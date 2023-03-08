@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+:root{
+    --clr-input:#EBE6F5;
+    --clr-btn:#8075FF;
+    --clr-facebook:#2463B6;
+    --clr-gray: #ececec;
+    --clr-white: #f7f7f7;
+    --clr-violet: #5B30D3;
+
+
+
+}
+
+img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20% auto;
+    position: relative;
+}
+
+.wrapper{
+    width: 360px;
+    padding: 2rem 1rem;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.text{
+    margin: .5rem 3rem 1.5rem 3rem;
+    font-size: 18px;
+}
+
+.text-sign{
+    font-size: 18px;
+}
+
+.img-container {
+    padding-bottom: 2.8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.img-container img {
+    width: auto;
+    max-width: 3rem;
+    height: auto;
+    margin: 0;
+}
+
+input{
+    width: 323px;
+    height: 56px;
+    background: var(--clr-input);
+    border-radius: 100px;
+    border: none;
+    padding: 12px 20px; /* para mover el placeholder */
+    margin-bottom: 10px;
+}
+
+form p{
+    text-align: right;
+    font-size: 0.8rem;
+    margin: 0 .1rem 0 0;
+}
+
+form p a{
+    color: gray;
+    text-decoration: none; /* para quitar el subrayado del link */
+}
+
+button{
+    width: 323px;
+    height: 56px;
+    border-radius: 100px;
+    border: none;
+    background-color: var(--clr-btn);
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    margin: 1rem 0 .5rem 0;
+}
+
+.facebook{
+    background: var(--clr-facebook);
+    font-weight: 400;
+}
+.google{
+    background: var(--clr-white);
+    color: black;
+    border: 1px solid ;
+}
+
+p{
+    margin: 1rem;
+    color: gray; 
+}
+
+p a{
+    color: var(--clr-violet);
+    text-decoration: none;
+}
+
+/* Home css */
+nav{
+    width: 100%;
+    padding: 0.7rem 0;
+    top: 0;
+    z-index: 10;
+}
+
+nav .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search{
+    background: var(--clr-white);
+    padding: 0.6rem 1rem;
+    width: 182px;
+    height: 36px;
+    border: 2px solid #DFE1E6;
+    margin-left: 1rem;
+}
