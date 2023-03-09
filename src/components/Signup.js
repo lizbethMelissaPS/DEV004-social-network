@@ -1,4 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
+
 import { getDatabase, set, ref } from 'firebase/database';
 import { onNavigate } from '../main';
 import { auth, database } from '../app/firebase.js';
@@ -9,10 +10,10 @@ export const signUp = () => {
   const div = document.createElement('div');
   const title = document.createElement('h2');
   /* crear botones createElement */
-  const button = document.createElement('button');
+  // const button = document.createElement("button");
   const buttonBack = document.createElement('button');
-  const inputEmail = document.createElement('input');
-  const inputPass = document.createElement('input');
+  // const inputEmail = document.createElement("input");
+  // const inputPass = document.createElement("input");
   const section = document.createElement('div');
   section.innerHTML = `
     <div class="wrapper">
@@ -27,12 +28,11 @@ export const signUp = () => {
         <input id="singup-email" type="email" class="" placeholder="Email">
         <input id="singup-password" type="password" class="" placeholder="Password">
         <input type="password" class="" placeholder="Confirm Password">
-      
       <button type="submit" class="submit">Sign Up</button>
       </form>  
       <p class="or">or</p>
-        <button type="submit" class="facebook">Continue with Facebook</button>
-        <button type="submit" class="google">Continue with Google</button>
+        <button id="fb-login" type="button" class="facebook">Continue with Facebook</button>
+        <button id="googleLogin" type="button" class="google">Continue with Google</button>
         <p class="sign-up">
           Already have an account yet? <a href="/login">Log in</a>
         </p> 
@@ -50,12 +50,16 @@ export const signUp = () => {
     console.log(username, lastname, email, password);
     try {
       // eslint-disable-next-line max-len
-      const userCredentials = await createUserWithEmailAndPassword(auth, email, password); // le paso los parametros que quiero auth
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      ); // le paso los parametros que quiero auth
       console.log(userCredentials.user);
       set(ref(database, `users/${userCredentials.user.uid}`), {
         name: username,
-        lastname: lastname,
-        email: email,
+        lastname,
+        email,
       });
       onNavigate('/profile');
       showMessage(`Welcome ${userCredentials.user.email}`, 'success');
@@ -72,21 +76,62 @@ export const signUp = () => {
     }
   });
 
-  /* AGREGAR TEXTO A LOS BOTONES textContent */
-  button.textContent = 'crear cuenta';
+  /* Google log-in */
+  const googleBtn = section.querySelector('#googleLogin');
+  googleBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials);
+      onNavigate('/profile');
+      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        showMessage('Email already in use', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
+      } else if (error.code === 'auth/invalid-email') {
+        showMessage('Invalid email', 'error');
+      } else if (error.code === 'auth/weak-password') {
+        showMessage('Weak password', 'error');
+      } else if (error.code) {
+        showMessage(error.message, 'error');
+      }
+    }
+  });
+
+  /* Facebook log-in */
+  const facebookbtn = section.querySelector('#fb-login');
+  facebookbtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const provider = new FacebookAuthProvider();
+
+    try {
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials);
+      onNavigate('/profile');
+      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+    } catch (error) {
+      if (error.code) {
+        showMessage(error.message, 'error');
+      }
+    }
+  });
+  // button.textContent = "crear cuenta";
   buttonBack.textContent = 'Regresa';
-  title.textContent = 'Registro de nueva cuenta';
+  // title.textContent = "Registro de nueva cuenta";
 
   /* evento a boton */
-  button.addEventListener('click', () => {
-    onNavigate('/');
-  });
+  // button.addEventListener("click", () => {
+  //   onNavigate("/");
+  // });
   buttonBack.addEventListener('click', () => {
     onNavigate('/');
   });
 
   /* INSERTA append */
-  div.append(title, inputEmail, inputPass, button, buttonBack, section);
+  div.append(title, buttonBack, section);
 
   return div;
 };
+// inputEmail, inputPass, button,

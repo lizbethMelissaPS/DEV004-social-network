@@ -1,14 +1,13 @@
 import { signOut } from 'firebase/auth'; // permite cerrar sesion que habiamos iniciado
 import { onNavigate } from '../main';
 import { auth } from '../app/firebase.js';
+import { posts } from '../app/posts.js';
 
 export const home = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
-  const title = document.createElement('h2');
-  /* crear botones createElement */
-  const buttonBack = document.createElement('button');
   const section = document.createElement('div');
+  const arreglo = [{texto: 'hola'}, {texto:'hi'}];
   section.innerHTML = `
   <nav>
     <div class="nav">
@@ -17,31 +16,36 @@ export const home = () => {
           </div>
           <input type="search" class="search" placeholder="search">
           <button id='logout' class="facebook">Log Out</button>
-        </div>
+    </div>
+    <aside class='aside'>
+      <ul class= "posts"> ${posts(arreglo)} </ul>
+    </aside>
   </nav>
     `;
 
   /* FIREBASE */
   const logout = section.querySelector('#logout');
-
   logout.addEventListener('click', async () => {
     await signOut(auth);
     console.log('user signout');
     onNavigate('/login');
   });
 
-  /* AGREGAR TEXTO A LOS BOTONES textContent */
-
-  buttonBack.textContent = 'Regresa';
-  title.textContent = 'homepage';
-
-  /* evento a boton */
-  buttonBack.addEventListener('click', () => {
-    onNavigate('/login');
-  });
+  /* posts  */
+  const postList = section.querySelector('.posts');
+  console.log(postList);
 
   /* INSERTA append */
-  div.append(title, buttonBack, section);
+  div.append(section);
 
   return div;
 };
+// export function setupPosts(data) {
+//   if (data.length) {
+//     console.log(postList);
+//   } else {
+//     postList.innerHTML = '<p> Post vacio </p>';
+//     console.log('no posts');
+//   }
+//   home();
+// }

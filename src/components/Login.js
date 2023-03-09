@@ -1,5 +1,5 @@
 import { async } from '@firebase/util';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
 import { getDatabase, update, ref } from 'firebase/database';
 import { auth, database } from '../app/firebase.js';
 import { showMessage } from '../app/showMessage.js';
@@ -27,13 +27,11 @@ export const Login = () => {
         <input type="email" id="login-email" class="" placeholder="Email" required>
         <input type="password" id="login-password"  class="" placeholder="Password" required>
         <p class="recover"> <a href="" >Forgot password?</a></p> 
-      
-      <button type="submit" id="log" class="submit">Log in</button>
+        <button type="submit" id="log" class="submit">Log in</button>
       </form> 
       <p class="or">or</p>
-        <button type="submit" class="facebook">Continue with Facebook</button>
-        <button type="submit" class="google">Continue with Google</button>
-       
+        <button id="fb-login" type="button" class="facebook">Continue with Facebook</button>
+        <button id="googleLogin" type="button" class="google">Continue with Google</button>
         <p class="sign-up">
           Dont have an account yet? <a href="/signup">Sign Up</a>
         </p> 
@@ -66,6 +64,41 @@ export const Login = () => {
       } else if (error.code === 'auth/user-not-found') {
         showMessage('User not found', 'error');
       } else if (error.code) {
+        showMessage(error.message, 'error');
+      }
+    }
+  });
+
+  /* Google log-in */
+  const googleBtn = section.querySelector('#googleLogin');
+  googleBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const provider = new GoogleAuthProvider();
+    try {
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials);
+      onNavigate('/profile');
+      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+    } catch (error) {
+      if (error.code) {
+        showMessage(error.message, 'error');
+      }
+    }
+  });
+
+  /* Facebook log-in */
+  const facebookbtn = section.querySelector('#fb-login');
+  facebookbtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const provider = new FacebookAuthProvider();
+
+    try {
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials);
+      onNavigate('/profile');
+      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+    } catch (error) {
+      if (error.code) {
         showMessage(error.message, 'error');
       }
     }

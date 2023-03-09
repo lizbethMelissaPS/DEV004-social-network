@@ -1,12 +1,14 @@
 // Este es el punto de entrada de tu aplicacion
 
 // import './app/firebase';
+import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './app/firebase.js';
+import { auth, db } from './app/firebase.js';
 import { Welcome } from './components/Welcome';
 import { Login } from './components/Login';
 import { signUp } from './components/Signup';
 import { home } from './components/Home';
+// import { setupPosts } from './app/posts';
 import { profile } from './components/Profile';
 
 // componentes
@@ -49,5 +51,8 @@ root.appendChild(component());
 
 /* Esta funcion devuelve los datos del usuario */
 onAuthStateChanged(auth, async (user) => {
-  console.log(user);
+  if (user) {
+    const querySnapshot = await getDocs(collection(db, 'posts'));
+    // setupPosts(querySnapshot.docs);
+  } else { console.log(user); }
 });
