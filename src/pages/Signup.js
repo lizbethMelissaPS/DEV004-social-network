@@ -1,10 +1,8 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
-
-import { getDatabase, set, ref } from 'firebase/database';
+// import { getDatabase, set, ref } from 'firebase/database';
 import { onNavigate } from '../main';
-import { auth, database } from '../app/firebase.js';
-import { showMessage } from '../app/showMessage.js';
-/* Para que este disponoble en otro lado export */
+import { userCredentials, loginGoogle, loginFacebook } from '../firebase/auth';
+import { showMessage } from '../components/showMessage.js';
+
 export const signUp = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
@@ -42,6 +40,7 @@ export const signUp = () => {
   const signupForm = section.querySelector('#signup-form');
   signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const username = signupForm['singup-name'].value;
     const lastname = signupForm['singup-lastname'].value;
     const email = signupForm['singup-email'].value;
@@ -49,18 +48,12 @@ export const signUp = () => {
     // eslint-disable-next-line no-console
     console.log(username, lastname, email, password);
     try {
-      // eslint-disable-next-line max-len
-      const userCredentials = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      ); // le paso los parametros que quiero auth
-      console.log(userCredentials.user);
-      set(ref(database, `users/${userCredentials.user.uid}`), {
+      /* set(ref(database, `users/${userCredentials.user.uid}`), {
         name: username,
         lastname,
         email,
-      });
+      }); */
+      userCredentials(email, password);
       onNavigate('/profile');
       showMessage(`Welcome ${userCredentials.user.email}`, 'success');
     } catch (error) {
@@ -80,13 +73,12 @@ export const signUp = () => {
   const googleBtn = section.querySelector('#googleLogin');
   googleBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    const provider = new GoogleAuthProvider();
 
     try {
-      const credentials = await signInWithPopup(auth, provider);
-      console.log(credentials);
+      await loginGoogle();
       onNavigate('/profile');
-      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+      console.log(loginGoogle);
+      showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         showMessage('Email already in use', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
@@ -104,13 +96,11 @@ export const signUp = () => {
   const facebookbtn = section.querySelector('#fb-login');
   facebookbtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    const provider = new FacebookAuthProvider();
 
     try {
-      const credentials = await signInWithPopup(auth, provider);
-      console.log(credentials);
+      await loginFacebook();
       onNavigate('/profile');
-      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+      showMessage(`Welcome ${loginFacebook.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
         showMessage(error.message, 'error');

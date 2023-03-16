@@ -1,3 +1,5 @@
+import { initializeApp } from 'firebase/app';
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyDgqC7nTcJgfUTNDgiwdFfOksjqylHd7Ns',
   authDomain: 'sonder-11eee.firebaseapp.com',
@@ -6,3 +8,5 @@ export const firebaseConfig = {
   messagingSenderId: '168562133515',
   appId: '1:168562133515:web:7ace1494350ec17777950e',
 };
+
+export const app = initializeApp(firebaseConfig);

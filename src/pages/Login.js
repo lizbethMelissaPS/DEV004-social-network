@@ -1,8 +1,8 @@
 import { async } from '@firebase/util';
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
-import { getDatabase, update, ref } from 'firebase/database';
-import { auth, database } from '../app/firebase.js';
-import { showMessage } from '../app/showMessage.js';
+import { update, ref } from 'firebase/database';
+import { loginGoogle, loginFacebook, newUser } from '../firebase/auth.js';
+// import { auth, database } from "../firebase/config.js";
+import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../main';
 /* Para que este disponoble en otro lado export */
 export const Login = () => {
@@ -49,15 +49,14 @@ export const Login = () => {
     console.log(email, password);
 
     try {
-      // eslint-disable-next-line max-len
-      const userCredentials = await signInWithEmailAndPassword(auth, email, password); // le paso los parametros que quiero auth
-      const dt = new Date();
-      update(ref(database, `users/${userCredentials.user.uid}`), {
+      newUser(email, password);
+      /* const dt = new Date();
+      update(ref(database, `users/${newUser.user.uid}`), {
         last_login: dt,
-      });
+      }); */
       onNavigate('/home');
 
-      showMessage(`Welcome ${userCredentials.user.email}`, 'success');
+      showMessage(`Welcome ${newUser.user.email}`, 'success');
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
@@ -73,12 +72,10 @@ export const Login = () => {
   const googleBtn = section.querySelector('#googleLogin');
   googleBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    const provider = new GoogleAuthProvider();
     try {
-      const credentials = await signInWithPopup(auth, provider);
-      console.log(credentials);
+      await loginGoogle();
       onNavigate('/profile');
-      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+      showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
         showMessage(error.message, 'error');
@@ -90,13 +87,11 @@ export const Login = () => {
   const facebookbtn = section.querySelector('#fb-login');
   facebookbtn.addEventListener('click', async (e) => {
     e.preventDefault();
-    const provider = new FacebookAuthProvider();
 
     try {
-      const credentials = await signInWithPopup(auth, provider);
-      console.log(credentials);
+      await loginFacebook();
       onNavigate('/profile');
-      showMessage(`Welcome ${credentials.user.displayName}`, 'success');
+      showMessage(`Welcome ${loginFacebook.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
         showMessage(error.message, 'error');

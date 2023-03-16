@@ -1,6 +1,6 @@
+// import { signOut } from 'firebase/auth';
 import { onNavigate } from '../main';
-import { signOut } from 'firebase/auth';
-import { auth } from '../app/firebase.js';
+// import { auth } from '../firebase/config.js';
 
 export const profile = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
@@ -23,7 +23,7 @@ export const profile = () => {
   const logout = section.querySelector('#logout');
 
   logout.addEventListener('click', async () => {
-    await signOut(auth);
+    await logout();
     console.log('user signout');
     onNavigate('/login');
   });

@@ -1,15 +1,16 @@
 // Este es el punto de entrada de tu aplicacion
 
 // import './app/firebase';
-import { getDocs, collection } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, db } from './app/firebase.js';
-import { Welcome } from './components/Welcome';
-import { Login } from './components/Login';
-import { signUp } from './components/Signup';
-import { home } from './components/Home';
+// import { getDocs, collection } from 'firebase/firestore';
+// import { onAuthStateChanged } from 'firebase/auth';
+// import { auth, db } from './app/firebase.js';
+import { Welcome } from './pages/Welcome';
+import { Login } from './pages/Login';
+import { signUp } from './pages/Signup';
+import { home } from './pages/Home';
 // import { setupPosts } from './app/posts';
-import { profile } from './components/Profile';
+import { profile } from './pages/Profile';
+// import { setupPosts } from './app/posts.js';
 
 // componentes
 const root = document.getElementById('root');
@@ -50,9 +51,3 @@ window.onpopstate = () => {
 root.appendChild(component());
 
 /* Esta funcion devuelve los datos del usuario */
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const querySnapshot = await getDocs(collection(db, 'posts'));
-    // setupPosts(querySnapshot.docs);
-  } else { console.log(user); }
-});
