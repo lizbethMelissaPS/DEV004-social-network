@@ -9,29 +9,44 @@ export const createPost = () => {
               <img src="./images/Sonder-icon.png" alt="">
             </div>
       </div>
-      <aside class='aside'>
-
-      </aside>
     </nav>
+    <h1>Create a post</h1>
+    <form id="task-form">
+        <article class="create-box">
+            <section class="file-box">
+                <input type="file" id="image-post" hidden accept=".png, .jpg, .jpeg">
+                <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
+            </section>
+            
+            <section class="gallery"></section>
+            
+            <p class="p-create" >Add a description</p>
+            <label for="description"></label>
+            <input id="" type="text" autocomplete="off" placeholder="What do you see in this picture?" maxlength="16">
+            <p class="p-create">Location</p>
+            <label for="location"></label>
+            <input id="" type="text" autocomplete="off" placeholder="Where are you right now?">
+
+            <button id="" type="button" class="check">
+            <img src="./images/check.png" alt="button check" class="check">
+            </button>
+        </article>
+    </form>
+    <div id="task-container"></div>
       `;
+  const taskForm = section.querySelector('#task-form');
+  const taskContainer = section.querySelector('#task-container');
+  const editStatus = false;
+  const id = '';
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const querySnapshot = await getDocs(collection(db, 'posts')); // traeme todos los datos que tienes hasta el momento
-      const htmlPosts = setupPosts(querySnapshot.docs);
-      const postsContainer = section.querySelector('.posts');
-      postsContainer.innerHTML = htmlPosts;
-    } else {
-      console.log(user);
-    }
-  });
 
-  /* FIREBASE */
-  const logout = section.querySelector('#logout');
-  logout.addEventListener('click', async () => {
-    await logout();
-    console.log('user signout');
-    onNavigate('/login');
+
+  
+  /* para que se seleccione todo input en el container */
+  const fileBox = section.querySelector('.file-box');
+  const fileInput = section.querySelector('#image-post');
+  fileBox.addEventListener('click', () => {
+    fileInput.click();
   });
 
   /* INSERTA append */

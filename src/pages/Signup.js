@@ -29,9 +29,9 @@ export const signUp = () => {
       <button type="submit" class="submit">Sign Up</button>
       </form>  
       <p class="or">or</p>
-        <button id="fb-login" type="button" class="facebook">Continue with Facebook</button>
-        <button id="googleLogin" type="button" class="google">Continue with Google</button>
-        <p class="sign-up">
+        <button id="fb-login" type="button" class="submit facebook">Continue with Facebook</button>
+        <button id="googleLogin" type="button" class="submit google">Continue with Google</button>
+        <p class="p-log">
           Already have an account yet? <a href="/login">Log in</a>
         </p> 
     </div>

@@ -1,0 +1,63 @@
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+.create-box{
+    width: 389px;
+    padding: 2rem 1rem;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.file-box{
+    width: 356.45px;
+    height: 315.17px;
+    border: 1px;
+    border: 10px solid #CAB6E3;
+    border-radius: 53px 11px 53px 0px;
+    margin-bottom: 10%;
+}
+
+.file-box img{
+    margin: 38% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.create-box p{
+    display: flex;
+    justify-content: left;
+}
+
+.create-box input{
+    width: 360px;
+    height: 36px;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid #CAB6E3;
+    margin-bottom: 10%;
+}
+
+.p-create{
+    font-weight: 700;
+    margin-bottom: 2%;
+}
+
+.check{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 100%;
+    width: 44px;
+    height: 44px; 
+    border: none;
+    cursor: pointer;
+}
+
+.check img{
+    /* padding-top: 10%; */
+}

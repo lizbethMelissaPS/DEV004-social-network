@@ -8,8 +8,8 @@ import { Welcome } from './pages/Welcome';
 import { Login } from './pages/Login';
 import { signUp } from './pages/Signup';
 import { home } from './pages/Home';
-// import { setupPosts } from './app/posts';
 import { profile } from './pages/Profile';
+import { createPost } from './pages/CreatePost.js';
 // import { setupPosts } from './app/posts.js';
 
 // componentes
@@ -24,6 +24,7 @@ const routes = {
   '/signup': signUp,
   '/home': home,
   '/profile': profile,
+  '/createpost': createPost,
 
 };
 

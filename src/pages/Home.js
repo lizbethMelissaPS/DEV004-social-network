@@ -1,30 +1,11 @@
 // import { signOut } from 'firebase/auth';  permite cerrar sesion que habiamos iniciado
 import { doc, getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase/auth.js';
+import { db } from '../firebase/firestore.js';
 import { onNavigate } from '../main.js';
+import { setupPosts } from '../components/postCard.js';
 // import { auth, db } from '../firebase/config.js';
-
-export const setupPosts = (data) => {
-  if (data.length) {
-    let html = '';
-    data.forEach((doc) => {
-      console.log(doc);
-      const post = doc.data();
-      console.log(post);
-      const li = `
-      <li>
-      <h5> ${post.title} </h5>
-      <p> ${post.content} </p>
-      </li>
-      `;
-      html += li;
-    });
-    return html;
-    //   posts.innerHTML = html;
-  }
-  // posts.innerHTML = '<p> Post vacio </p>';
-  console.log('no posts');
-};
 
 export const home = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
@@ -38,11 +19,13 @@ export const home = () => {
           </div>
           <input type="search" class="search" placeholder="search">
           <button id='logout' class="facebook">Log Out</button>
+          <button id='createPost' class="google">+</button>
     </div>
-    <aside class='aside'>
-      <ul class="posts"></ul>
-    </aside>
+    
   </nav>
+  <aside class='aside'>
+      <article class="posts"></article>
+    </aside>
     `;
 
   onAuthStateChanged(auth, async (user) => {
@@ -62,6 +45,11 @@ export const home = () => {
     await logout();
     console.log('user signout');
     onNavigate('/login');
+  });
+
+  const createPost = section.querySelector('#createPost');
+  createPost.addEventListener('click', async () => {
+    onNavigate('/createpost');
   });
 
   /* INSERTA append */

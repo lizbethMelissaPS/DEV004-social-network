@@ -30,9 +30,9 @@ export const Login = () => {
         <button type="submit" id="log" class="submit">Log in</button>
       </form> 
       <p class="or">or</p>
-        <button id="fb-login" type="button" class="facebook">Continue with Facebook</button>
-        <button id="googleLogin" type="button" class="google">Continue with Google</button>
-        <p class="sign-up">
+        <button id="fb-login" type="button" class="submit facebook">Continue with Facebook</button>
+        <button id="googleLogin" type="button" class="submit google">Continue with Google</button>
+        <p class="p-log">
           Dont have an account yet? <a href="/signup">Sign Up</a>
         </p> 
    </div>

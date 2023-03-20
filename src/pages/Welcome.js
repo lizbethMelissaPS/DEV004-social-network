@@ -5,7 +5,7 @@ export const Welcome = () => {
   const div = document.createElement('div');
   const img = document.createElement('img');
   img.src = '../images/sonder.png';
-
+  img.classList.add('welcome');
   /* evento a boton */
   img.addEventListener('click', () => {
     onNavigate('/login');

@@ -26,3 +26,6 @@ export const getTask = (id) => getDoc(doc(db, 'tasks', id));
 
 // actualizar
 export const updateTask = (id, newFile) => updateDoc(doc(db, 'tasks', id), newFile);
+
+// obtener posts del doc
+// export const post = doc.data;
