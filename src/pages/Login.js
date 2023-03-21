@@ -75,6 +75,7 @@ export const Login = () => {
     try {
       await loginGoogle();
       onNavigate('/profile');
+      console.log(loginGoogle);
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
