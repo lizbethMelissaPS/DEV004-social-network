@@ -1,14 +1,12 @@
 // import { signOut } from 'firebase/auth';  permite cerrar sesion que habiamos iniciado
-import { doc, getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { async, } from 'regenerator-runtime';
-import { auth, logOut } from '../firebase/auth.js';
-import {
-  db,
-} from '../firebase/firestore.js';
+import { auth } from '../firebase/auth.js';
+import { db } from '../firebase/firestore.js';
 import { onNavigate } from '../main.js';
 import { setupPosts } from '../components/postCard.js';
 // import { auth, db } from '../firebase/config.js';
+import { onGetTasks, deleteTask, getTask } from '../firebase/firestore.js';
 
 export const home = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
@@ -31,37 +29,11 @@ export const home = () => {
   </aside>
     `;
 
-  // onAuthStateChanged(auth, async (user) => {
-  //   if (user) {
-  //     const querySnapshot = await getDocs(collection(db, 'posts')); // traeme todos los datos que tienes hasta el momento
-  //     const htmlPosts = setupPosts(querySnapshot.docs);
-  //     const postsContainer = section.querySelector('.posts');
-  //     postsContainer.innerHTML = htmlPosts;
-  //   } else {
-  //     console.log(user);
-  //   }
-  // });
-
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const querySnapshot = await getDocs(collection(db, 'posts')); // traeme todos los datos que tienes hasta el momento
-      const htmlPosts = setupPosts(querySnapshot.docs);
-      const postsContainer = section.querySelector('.posts');
-      postsContainer.innerHTML = htmlPosts;
-    } else {
-      console.log(user);
-    }
-  });
-
-  // const postsContainer = section.querySelector('.posts');
-  // postsContainer.addEventListener('click', async (e) => {
-  //   e.preventDefault();
-  // });
 
   /* FIREBASE */
   const logout = section.querySelector('#logout');
   logout.addEventListener('click', async () => {
-    await logOut();
+    await logout();
     console.log('user signout');
     onNavigate('/login');
   });
