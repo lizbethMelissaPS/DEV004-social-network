@@ -26,9 +26,52 @@ export const home = () => {
   </nav>
   <aside class='aside'>
       <article class="posts"></article>
-  </aside>
+    </aside>
     `;
 
+  /// MOSTRAR
+  onAuthStateChanged(auth, async (user) => {
+    console.log('USeR : ', user);
+    if (user) {
+      const querySnapshot = await getDocs(collection(db, 'post')); // traeme todos los datos que tienes hasta el momento
+      const htmlPosts = setupPosts(querySnapshot.docs);
+      const postsContainer = section.querySelector('.posts');
+      postsContainer.innerHTML = htmlPosts;
+    } else {
+      console.log('USUER : ', user);
+    }
+
+    /// ELIMINAR
+    const postsContainer = section.querySelector('.posts');
+    console.log('postsContainer : ', postsContainer);
+    const btnDelete = postsContainer.querySelectorAll('.btn-delete');
+    console.log('btnDelete : ', btnDelete);
+    btnDelete.forEach((btn) => {
+      btn.addEventListener('click', ({ target: { dataset } }) => {
+        console.log('id: ', dataset.id);
+        deleteTask(dataset.id);
+      });
+    });
+    ///
+    /// EDITAR
+    const btnEdit = postsContainer.querySelectorAll('.btn-edit');
+    btnEdit.forEach((btn) => {
+      btn.addEventListener('click', async ({ target: { dataset } }) => {
+        const doc = await getTask(dataset.id);
+        const task = doc.data();
+
+        taskForm['task-title'].value = task.title;
+        taskForm['task-description'].value = task.description;
+
+        editStatus = true;
+        id = doc.id;
+
+        taskForm['btn-task-save'].innerText = 'Update';
+      });
+    });
+    ///
+  });
+  ///
 
   /* FIREBASE */
   const logout = section.querySelector('#logout');
