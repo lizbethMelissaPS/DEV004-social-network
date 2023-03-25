@@ -1,5 +1,6 @@
+import { subirArchivo } from '../firebase/storage';
 import {
-  saveTask, onGetTasks, deleteTask, getTask,
+  saveTask,
 } from '../firebase/firestore';
 
 export const createPost = () => {
@@ -18,8 +19,8 @@ export const createPost = () => {
     <form id="task-form">
         <article class="create-box">
             <section class="file-box">
-                <input type="file" id="post-img" hidden accept=".png, .jpg, .jpeg">
-                <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
+              <input type="file" id="post-img" >
+              <div id="mensaje"></div>
             </section>
             
             <section class="gallery"></section>
@@ -43,16 +44,14 @@ export const createPost = () => {
 
   /// /////////////////////////////
   /* para que se seleccione todo input en el container */
-  const fileBox = section.querySelector('.file-box');
+  /* const fileBox = section.querySelector('.file-box');
   const fileInput = section.querySelector('#post-img');
   fileBox.addEventListener('click', () => {
     fileInput.click();
-  });
+  }); */
   /* GUARDAR POST */
   const taskForm = section.querySelector('#task-form');
-  const taskContainer = section.querySelector('#task-container');
-  // const editStatus = false;
-  // const id = '';
+  // const taskContainer = section.querySelector('#task-container');
   /// ////////////////////////////
   console.log('taskForm');
 
@@ -65,9 +64,9 @@ export const createPost = () => {
     console.log('GUARDAR', postImg.value, ' ', postLocation.value, ' ', postDescription.value);
     saveTask(postImg.value, postDescription.value, postLocation.value);
     taskForm.reset();
-  });
+  }); /* fin GUARDAR POST */
 
-  window.addEventListener('DOMContentLoaded', async () => {
+  /*   window.addEventListener('DOMContentLoaded', async () => {
     // const querySnapshot = await getTasks();
     onGetTasks((querySnapshot) => {
       let html = '';
@@ -77,22 +76,22 @@ export const createPost = () => {
         <div>
         <h3>${task.title}</h3>
         <p>${task.description}</p>
-        <button class='btn-delete' data-id="${doc.id}">Delete</button>
-        <button class='btn-edit' data-id="${doc.id}">Edit</button>
+        /* <button class='btn-delete' data-id="${doc.id}">Delete</button>
+        <button class='btn-edit' data-id="${doc.id}">Edit</button> *
 
         </div>
         `;
       });
       taskContainer.innerHTML = html;
 
-      const btnDelete = taskContainer.querySelectorAll('.btn-delete');
+    /*   const btnDelete = taskContainer.querySelectorAll('.btn-delete');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', ({ target: { dataset } }) => {
           deleteTask(dataset.id);
         });
-      });
+      }); */
 
-      const btnEdit = taskContainer.querySelectorAll('.btn-edit');
+  /* const btnEdit = taskContainer.querySelectorAll('.btn-edit');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getTask(dataset.id);
@@ -106,10 +105,17 @@ export const createPost = () => {
 
           taskForm['btn-task-save'].innerText = 'Update';
         });
-      });
+      }); *
     });
+  }); */
+  /* HHHHHHHHHHH */
+  // asociamos el manejador de eventos sobre el INPUT FILE
+  section.querySelector('#post-img').addEventListener('change', (evento) => {
+    evento.preventDefault();
+    const archivo = evento.target.files[0];
+    subirArchivo(archivo);
   });
-
+  /* HHHHHHHHHHHHHHHHHHHHHHHHH */
   /* INSERTA append */
   div.append(section);
 
