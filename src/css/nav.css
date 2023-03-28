@@ -1,0 +1,48 @@
+.nav{
+    display: flex;
+    width: 125px;
+    background: rgb(255, 255, 255);
+    border: 1.18208px solid rgba(137, 136, 136, 0.5);
+    border-radius: 56px;
+}
+
+.nav-container{
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+}
+
+.logo-container{
+    padding-bottom: 2.8rem;
+    width: 125px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-container img {
+    width: auto;
+    max-width: 3rem;
+    height: auto;
+    margin: 0;
+}
+
+.icono-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 125px;
+    height: 84px;
+    transition: all 200ms ease-out;
+    cursor: pointer;
+}
+
+.icono-nav img{
+    max-width: 28.91px;
+}
+
+.icono-nav:hover{
+    background: linear-gradient(180deg, rgba(255, 87, 87, 0.052) 0%, rgba(91, 48, 211, 0.0552) 70.31%, rgba(23, 45, 226, 0.0552) 88.54%);
+}
+.icono-nav:active{
+    background: linear-gradient(180deg, rgba(255, 87, 87, 0.13) 0%, rgba(91, 48, 211, 0.138) 70.31%, rgba(23, 45, 226, 0.138) 88.54%);
+}

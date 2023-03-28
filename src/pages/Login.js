@@ -1,6 +1,6 @@
 import { async } from '@firebase/util';
 import { update, ref } from 'firebase/database';
-import { loginGoogle, loginFacebook, newUser } from '../firebase/auth.js';
+import { loginGoogle, loginFacebook, userInfo } from '../firebase/auth.js';
 // import { auth, database } from "../firebase/config.js";
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../main';
@@ -49,14 +49,14 @@ export const Login = () => {
     console.log(email, password);
 
     try {
-      newUser(email, password);
+      await userInfo(email, password);
       /* const dt = new Date();
-      update(ref(database, `users/${newUser.user.uid}`), {
+      update(ref(database, `users/${userInfo.user.uid}`), {
         last_login: dt,
       }); */
       onNavigate('/home');
 
-      showMessage(`Welcome ${newUser.user.email}`, 'success');
+      showMessage(`Welcome ${userInfo.user.email}`, 'success');
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
@@ -74,7 +74,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await loginGoogle();
-      onNavigate('/profile');
+      onNavigate('/home');
       console.log(loginGoogle);
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
@@ -91,7 +91,7 @@ export const Login = () => {
 
     try {
       await loginFacebook();
-      onNavigate('/profile');
+      onNavigate('/home');
       showMessage(`Welcome ${loginFacebook.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {

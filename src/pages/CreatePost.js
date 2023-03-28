@@ -42,7 +42,13 @@ export const createPost = () => {
     <div id="task-container"></div>
       `;
 
-  /// /////////////////////////////
+  /* para que se seleccione todo input en el container */
+  const checkBox = section.querySelector('#btn-task-save');
+  const check = section.querySelector('.check');
+  checkBox.addEventListener('click', () => {
+    check.click();
+  });
+
   /* para que se seleccione todo input en el container */
   /* const fileBox = section.querySelector('.file-box');
   const fileInput = section.querySelector('#post-img');
@@ -121,3 +127,6 @@ export const createPost = () => {
 
   return div;
 };
+
+
+// onNavigate('/login')

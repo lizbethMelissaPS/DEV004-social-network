@@ -76,7 +76,7 @@ export const signUp = () => {
 
     try {
       await loginGoogle();
-      onNavigate('/profile');
+      onNavigate('/home');
       console.log(loginGoogle);
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
@@ -99,7 +99,7 @@ export const signUp = () => {
 
     try {
       await loginFacebook();
-      onNavigate('/profile');
+      onNavigate('/home');
       showMessage(`Welcome ${loginFacebook.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
