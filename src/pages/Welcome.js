@@ -1,4 +1,4 @@
-import { onNavigate } from '../main';
+import { onNavigate } from '../router';
 /* Para que este disponoble en otro lado export */
 export const Welcome = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES+, crear elementos createElement */
