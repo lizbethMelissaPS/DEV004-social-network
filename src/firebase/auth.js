@@ -13,7 +13,7 @@ import { app } from './config.js';
 export const auth = getAuth(app);
 
 // eslint-disable-next-line max-len
-export const userCredentials = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+export const addUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
 export const userInfo = (email, password) => signInWithEmailAndPassword(auth, email, password);
 

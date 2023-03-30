@@ -1,5 +1,6 @@
 // import { doc } from 'firebase/firestore';
 
+// eslint-disable-next-line consistent-return
 export const setupPosts = (data) => {
   if (data.length) {
     let html = '';

@@ -44,6 +44,6 @@ window.onpopstate = () => {
   root.append(component());
 };
 
-root.appendChild(component());
+root.append(component());
 
 /* Esta funcion devuelve los datos del usuario */

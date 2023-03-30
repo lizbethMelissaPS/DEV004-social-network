@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins";
+    font-family: 'Poppins', sans-serif;
 }
 
 :root{
@@ -111,7 +111,7 @@ form p a{
     margin: 1rem;
 }
 
-p a{
+.link{
     color: var(--clr-violet);
     text-decoration: none;
 }

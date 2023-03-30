@@ -1,19 +1,19 @@
-import { async } from "@firebase/util";
-import { update, ref } from "firebase/database";
-import { loginGoogle, loginFacebook, userInfo } from "../firebase/auth.js";
+// import { async } from '@firebase/util';
+// import { update, ref } from 'firebase/database';
+import { loginGoogle, loginFacebook, userInfo } from '../firebase/auth.js';
 // import { auth, database } from "../firebase/config.js";
-import { showMessage } from "../components/showMessage.js";
-import { onNavigate } from "../router";
+import { showMessage } from '../components/showMessage.js';
+import { onNavigate } from '../router';
 /* Para que este disponoble en otro lado export */
 export const Login = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
-  const div = document.createElement("div");
-  const title = document.createElement("h2");
+  const div = document.createElement('div');
+  const title = document.createElement('h2');
   /* crear botones createElement */
-  const button = document.createElement("button");
-  const buttonBack = document.createElement("button");
-  const buttonProfile = document.createElement("button");
-  const section = document.createElement("div");
+  const button = document.createElement('button');
+  const buttonBack = document.createElement('button');
+  const buttonProfile = document.createElement('button');
+  const section = document.createElement('div');
   section.innerHTML = `
     <div class="wrapper">
       <div class="img-container">
@@ -33,18 +33,18 @@ export const Login = () => {
         <button id="fb-login" type="button" class="submit facebook">Continue with Facebook</button>
         <button id="googleLogin" type="button" class="submit google">Continue with Google</button>
         <p class="p-log">
-          Dont have an account yet? <a href="/signup">Sign Up</a>
+          Dont have an account yet? <a class="link" href="/signup">Sign Up</a>
         </p> 
    </div>
   `;
 
   /* FIREBASE FORM */
-  const loginForm = section.querySelector("#login-form");
+  const loginForm = section.querySelector('#login-form');
 
-  loginForm.addEventListener("submit", async (e) => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = loginForm["login-email"].value;
-    const password = loginForm["login-password"].value;
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
     // eslint-disable-next-line no-console
     console.log(email, password);
 
@@ -54,66 +54,66 @@ export const Login = () => {
       update(ref(database, `users/${userInfo.user.uid}`), {
         last_login: dt,
       }); */
-      onNavigate("/home");
+      onNavigate('/home');
 
-      showMessage(`Welcome ${userInfo.user.email}`, "success");
+      showMessage(`Welcome ${userInfo.user.email}`, 'success');
     } catch (error) {
-      if (error.code === "auth/wrong-password") {
-        showMessage("Wrong password", "error"); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
-      } else if (error.code === "auth/user-not-found") {
-        showMessage("User not found", "error");
+      if (error.code === 'auth/wrong-password') {
+        showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
+      } else if (error.code === 'auth/user-not-found') {
+        showMessage('User not found', 'error');
       } else if (error.code) {
-        showMessage(error.message, "error");
+        showMessage(error.message, 'error');
       }
     }
   });
 
   /* Google log-in */
-  const googleBtn = section.querySelector("#googleLogin");
-  googleBtn.addEventListener("click", async (e) => {
+  const googleBtn = section.querySelector('#googleLogin');
+  googleBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
       await loginGoogle();
-      onNavigate("/home");
+      onNavigate('/home');
       console.log(loginGoogle);
-      showMessage(`Welcome ${loginGoogle.user.displayName}`, "success");
+      showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
-        showMessage(error.message, "error");
+        showMessage(error.message, 'error');
       }
     }
   });
 
   /* Facebook log-in */
-  const facebookbtn = section.querySelector("#fb-login");
-  facebookbtn.addEventListener("click", async (e) => {
+  const facebookbtn = section.querySelector('#fb-login');
+  facebookbtn.addEventListener('click', async (e) => {
     e.preventDefault();
 
     try {
       await loginFacebook();
-      onNavigate("/home");
-      showMessage(`Welcome ${loginFacebook.user.displayName}`, "success");
+      onNavigate('/home');
+      showMessage(`Welcome ${loginFacebook.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {
-        showMessage(error.message, "error");
+        showMessage(error.message, 'error');
       }
     }
   });
 
   /* AGREGAR TEXTO A LOS BOTONES textContent */
-  button.textContent = "Entrar";
-  buttonBack.textContent = "Regresa";
-  buttonProfile.textContent = "Profile";
-  title.textContent = "Inicia secion LOGIN";
+  button.textContent = 'Entrar';
+  buttonBack.textContent = 'Regresa';
+  buttonProfile.textContent = 'Profile';
+  title.textContent = 'Inicia secion LOGIN';
 
-  button.addEventListener("click", () => {
-    onNavigate("/home");
+  button.addEventListener('click', () => {
+    onNavigate('/home');
   });
-  buttonBack.addEventListener("click", () => {
-    onNavigate("/");
+  buttonBack.addEventListener('click', () => {
+    onNavigate('/');
   });
-  buttonProfile.addEventListener("click", () => {
-    onNavigate("/profile");
+  buttonProfile.addEventListener('click', () => {
+    onNavigate('/profile');
   });
 
   /* INSERTA append */

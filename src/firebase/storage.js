@@ -23,9 +23,9 @@ export function subirArchivo(archivo) {
   uploadTask.on(
     'state_changed',
     (snapshot) => {
-    // Obtenga el progreso de la tarea, incluida la cantidad de bytes cargados y la cantidad total de bytes que se cargarán
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log(`Upload is ${progress}% done`);
+      // eslint-disable-next-line default-case
       switch (snapshot.state) {
         case 'paused':
           console.log('Upload is paused');
@@ -36,6 +36,7 @@ export function subirArchivo(archivo) {
       }
     },
     (error) => {
+      // eslint-disable-next-line default-case
       switch (error.code) {
         case 'storage/unauthorized':
         // User doesn't have permission to access the object

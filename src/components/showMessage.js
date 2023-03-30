@@ -1,4 +1,5 @@
 export function showMessage(message, type = 'sucess') {
+  // eslint-disable-next-line no-undef
   Toastify({
     text: message,
     duration: 3000,
