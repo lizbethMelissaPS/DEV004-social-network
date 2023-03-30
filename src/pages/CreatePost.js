@@ -1,10 +1,7 @@
 import { subirArchivo } from '../firebase/storage';
-import {
-  saveTask,
-} from '../firebase/firestore';
+import { saveTask } from '../firebase/firestore';
 
 export const createPost = () => {
-  /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
   const section = document.createElement('div');
   section.innerHTML = `
@@ -16,11 +13,11 @@ export const createPost = () => {
       </div>
     </nav>
     <h1>Create a post</h1>
-    <form id="task-form">
-        <article class="create-box">
-            <section class="file-box">
-              <input type="file" id="post-img" >
-              <div id="mensaje"></div>
+    <form id="create-form">
+        <article id="create-box" class="create-box">
+            <section id="file-box" class="file-box">
+              <input type="file" id="post-img" class="post-img" hidden>
+              <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
             </section>
             
             <section class="gallery"></section>
@@ -42,91 +39,39 @@ export const createPost = () => {
     <div id="task-container"></div>
       `;
 
-  /* para que se seleccione todo input en el container */
+  /* para que se seleccione todo input en el container
   const checkBox = section.querySelector('#btn-task-save');
   const check = section.querySelector('.check');
   checkBox.addEventListener('click', () => {
     check.click();
-  });
+    // onNavigate('/home');
+  }); */
 
-  /* para que se seleccione todo input en el container */
-  /* const fileBox = section.querySelector('.file-box');
+  const fileBox = section.querySelector('.file-box');
   const fileInput = section.querySelector('#post-img');
   fileBox.addEventListener('click', () => {
     fileInput.click();
-  }); */
-  /* GUARDAR POST */
-  const taskForm = section.querySelector('#task-form');
-  // const taskContainer = section.querySelector('#task-container');
-  /// ////////////////////////////
-  console.log('taskForm');
+  });
 
-  taskForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const postImg = taskForm['post-img'];
-    const postLocation = taskForm['post-location'];
-    const postDescription = taskForm['post-description'];
-    //
-    console.log('GUARDAR', postImg.value, ' ', postLocation.value, ' ', postDescription.value);
-    saveTask(postImg.value, postDescription.value, postLocation.value);
-    taskForm.reset();
-  }); /* fin GUARDAR POST */
-
-  /*   window.addEventListener('DOMContentLoaded', async () => {
-    // const querySnapshot = await getTasks();
-    onGetTasks((querySnapshot) => {
-      let html = '';
-      querySnapshot.forEach((doc) => {
-        const task = doc.data();
-        html += `
-        <div>
-        <h3>${task.title}</h3>
-        <p>${task.description}</p>
-        /* <button class='btn-delete' data-id="${doc.id}">Delete</button>
-        <button class='btn-edit' data-id="${doc.id}">Edit</button> *
-
-        </div>
-        `;
-      });
-      taskContainer.innerHTML = html;
-
-    /*   const btnDelete = taskContainer.querySelectorAll('.btn-delete');
-      btnDelete.forEach((btn) => {
-        btn.addEventListener('click', ({ target: { dataset } }) => {
-          deleteTask(dataset.id);
-        });
-      }); */
-
-  /* const btnEdit = taskContainer.querySelectorAll('.btn-edit');
-      btnEdit.forEach((btn) => {
-        btn.addEventListener('click', async ({ target: { dataset } }) => {
-          const doc = await getTask(dataset.id);
-          const task = doc.data();
-
-          taskForm['task-title'].value = task.title;
-          taskForm['task-description'].value = task.description;
-
-          editStatus = true;
-          id = doc.id;
-
-          taskForm['btn-task-save'].innerText = 'Update';
-        });
-      }); *
-    });
-  }); */
-  /* HHHHHHHHHHH */
-  // asociamos el manejador de eventos sobre el INPUT FILE
-  section.querySelector('#post-img').addEventListener('change', (evento) => {
+  fileInput.addEventListener('change', (evento) => {
     evento.preventDefault();
     const archivo = evento.target.files[0];
+    console.log(archivo);
     subirArchivo(archivo);
   });
-  /* HHHHHHHHHHHHHHHHHHHHHHHHH */
-  /* INSERTA append */
+
+  const createForm = section.querySelector('#create-form');
+
+  createForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // const postImg = createForm['post-img'];
+    const postLocation = createForm['post-location'];
+    const postDescription = createForm['post-description'];
+    await saveTask(localStorage.getItem('url'), postDescription.value, postLocation.value);
+    createForm.reset();
+  });
+
   div.append(section);
 
   return div;
 };
-
-
-// onNavigate('/login')

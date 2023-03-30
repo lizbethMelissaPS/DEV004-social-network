@@ -12,7 +12,7 @@ export const home = () => {
   const div = document.createElement('div');
   const section = document.createElement('div');
   section.innerHTML = `
-  <nav>
+  <header>
     <div class="nav">
           <div class="img-container">
             <img src="./images/Sonder-icon.png" alt="">
@@ -22,7 +22,7 @@ export const home = () => {
           <button id='createPost' class="google">+</button>
     </div>
     
-  </nav>
+  </header>
   <aside class='aside'>
       <article class="posts"></article>
     </aside>

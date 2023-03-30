@@ -17,15 +17,20 @@ h1{
     border: 10px solid #CAB6E3;
     border-radius: 53px 11px 53px 0px;
     margin-bottom: 10%;
+    overflow: hidden;
+}
+.preview{
+    display: block;
+    width: 100%;
 }
 
-.file-box img{
+
+.photo-icon{
     margin: 38% auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 
 .create-box p{
@@ -61,3 +66,4 @@ h1{
 .check img{
     /* padding-top: 10%; */
 }
+
