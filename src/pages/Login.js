@@ -1,6 +1,6 @@
 // import { async } from '@firebase/util';
 // import { update, ref } from 'firebase/database';
-import { loginGoogle, loginFacebook, userInfo } from '../firebase/auth.js';
+import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
 // import { auth, database } from "../firebase/config.js";
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
@@ -49,14 +49,14 @@ export const Login = () => {
     console.log(email, password);
 
     try {
-      await userInfo(email, password);
+      await login(email, password);
       /* const dt = new Date();
-      update(ref(database, `users/${userInfo.user.uid}`), {
+      update(ref(database, `users/${login.user.uid}`), {
         last_login: dt,
       }); */
       onNavigate('/home');
 
-      showMessage(`Welcome ${userInfo.user.email}`, 'success');
+      showMessage(`Welcome ${login.user.email}`, 'success');
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
