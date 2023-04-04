@@ -5,8 +5,10 @@
 // importamos la funcion que vamos a testear
 import { signUp } from '../src/pages/Signup.js';
 import { Login } from '../src/pages/Login.js';
+import { login } from '../src/firebase/auth.js';
 
 jest.mock('../src/router.js');
+jest.mock('../src/firebase/auth.js');
 
 describe('myFunction', () => {
   it('debería ser una función', () => {
@@ -32,5 +34,17 @@ describe('Login', () => {
     expect(submit).not.toBe(null);
 
     document.body.append(root);
+  });
+});
+
+describe('Los test del Registro', () => {
+  test('Existe el boton de crear cuenta', () => {
+    const elemento = Login();
+    const boton = elemento.querySelector('#log');
+    expect(boton).not.toBeNull();
+  });
+
+  test('Snapshot del REGISTRO', () => {
+    expect(login()).toMatchSnapshot();
   });
 });

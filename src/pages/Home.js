@@ -1,7 +1,7 @@
 // import { signOut } from 'firebase/auth';  permite cerrar sesion que habiamos iniciado
 import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/auth.js';
+import { auth, logOut } from '../firebase/auth.js';
 import { db, deleteTask } from '../firebase/firestore.js';
 import { onNavigate } from '../router.js';
 import { setupPosts } from '../components/postCard.js';
@@ -57,7 +57,7 @@ export const home = () => {
   /* FIREBASE */
   const logout = section.querySelector('#logout');
   logout.addEventListener('click', async () => {
-    await logout();
+    await logOut();
     console.log('user signout');
     onNavigate('/login');
   });
