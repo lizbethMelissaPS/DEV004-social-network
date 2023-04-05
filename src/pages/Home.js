@@ -1,4 +1,3 @@
-// import { signOut } from 'firebase/auth';  permite cerrar sesion que habiamos iniciado
 import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logOut } from '../firebase/auth.js';
@@ -27,7 +26,7 @@ export const home = () => {
       <article class="posts"></article>
     </aside>
     `;
-  
+
   /// MOSTRAR
   onAuthStateChanged(auth, async (user) => {
     console.log('USeR : ', user);

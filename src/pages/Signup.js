@@ -1,5 +1,4 @@
 // import { getDatabase, set, ref } from 'firebase/database';
-import { saveUserData } from '../firebase/firestore.js';
 import { onNavigate } from '../router.js';
 import { addUser, loginGoogle, loginFacebook } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
@@ -87,8 +86,6 @@ export const signUp = () => {
       await loginGoogle();
       onNavigate('/home');
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
-      saveUserData(loginGoogle.user.displayName, loginGoogle.user.photoURL);
-      console.log('datos de usuario: ', loginGoogle.user.displayName, loginGoogle.user.photoURL);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         showMessage('Email already in use', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)

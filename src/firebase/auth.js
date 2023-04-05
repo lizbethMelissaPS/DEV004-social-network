@@ -25,4 +25,4 @@ export const loginGoogle = () => signInWithPopup(auth, google);
 export const loginFacebook = () => signInWithPopup(auth, facebook);
 export const recoverPassword = (email) => sendPasswordResetEmail(email);
 export const logOut = () => signOut(auth);
-export const currentUser = () => auth().currentUser.uid;
+export const currentUser = () => auth.currentUser;

@@ -1,21 +1,16 @@
 /* eslint-disable max-len */
 import {
-  getFirestore, setDoc, addDoc, collection, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc,
+  getFirestore, addDoc, collection, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc,
 } from 'firebase/firestore';
 import { app } from './config';
 
 export const db = getFirestore(app);
 
 // guardar dato
-export const saveTask = (img, description, location, date) => {
+export const saveTask = (name, photo, img, description, location, date) => {
   addDoc(collection(db, 'post'), {
-    img, description, location, date,
+    name, photo, img, description, location, date,
   });
-};
-
-// guardar usuario
-export const saveUserData = (name, photo) => {
-  setDoc(collection(db, 'userInfo'), { name, photo });
 };
 
 // listar datos

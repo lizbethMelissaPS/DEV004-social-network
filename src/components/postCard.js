@@ -5,16 +5,17 @@ export const setupPosts = (data, user) => {
   if (data.length || user.length) {
     let html = '';
     data.forEach((doc) => {
+      // const userA = currentUser();
       const post = doc.data();
       const section = `
         <article class="post-box">
           <section class="user-box">
             <aside class="info">
                 <figure class="profile-postbox">
-                <img src="${user.photoURL}" alt="profile pic">
+                <img src="${post.photo}" alt="profile pic">
                 </figure>
               <aside class="auto-layout">
-                <p class="username-post"> ${user.displayName} </p>
+                <p class="username-post"> ${post.name} </p>
                 <p class="date-post"> ${post.date} </p>
               </aside>
             </aside>

@@ -1,5 +1,6 @@
 import { subirArchivo } from '../firebase/storage.js';
 import { saveTask } from '../firebase/firestore.js';
+import { currentUser } from '../firebase/auth.js';
 
 export const createPost = () => {
   const div = document.createElement('div');
@@ -66,11 +67,12 @@ export const createPost = () => {
 
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const user = currentUser();
     const dt = new Date().toLocaleDateString();
     console.log('FECHA: ', dt);
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(localStorage.getItem('url'), postDescription.value, postLocation.value, dt);
+    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt);
     createForm.reset();
   });
 

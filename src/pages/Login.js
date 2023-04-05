@@ -1,7 +1,6 @@
 // import { async } from '@firebase/util';
 // import { update, ref } from 'firebase/database';
 import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
-import { saveUserData } from '../firebase/firestore.js';
 // import { auth, database } from "../firebase/config.js";
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
@@ -81,8 +80,6 @@ export const Login = () => {
       await loginGoogle();
       console.log(loginGoogle);
       onNavigate('/home');
-      saveUserData(loginGoogle.user.displayName, loginGoogle.user.photoURL);
-      console.log('datos de usuario: ', loginGoogle.user.displayName, loginGoogle.user.photoURL);
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {

@@ -37,7 +37,7 @@
 .profile-postbox img{ 
     display: block;
     width: 100%;
-    /*height: 43.74px; */
+    /* height: -webkit-fill-available;  */
 }
 .auto-layout{
     display: flex;
