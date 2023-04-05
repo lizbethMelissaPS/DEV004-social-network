@@ -1,6 +1,7 @@
 // import { async } from '@firebase/util';
 // import { update, ref } from 'firebase/database';
 import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
+import { saveUserData } from '../firebase/firestore.js';
 // import { auth, database } from "../firebase/config.js";
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
@@ -15,11 +16,11 @@ export const Login = () => {
   const buttonProfile = document.createElement('button');
   const section = document.createElement('div');
   section.innerHTML = `
-    <div class="wrapper">
-      <div class="img-container">
+    <article class="wrapper">
+      <picture class="img-container">
         <img src="./images/Sonder-icon.png" alt="">
-      </div>
-      <h1>Log In</h1>
+      </picture>
+      <h1 class="h1-form">Log In</h1>
       <p class="text" >Welcome back you've been missed!</p>
       
       <form id="login-form" class="login-form">
@@ -30,12 +31,16 @@ export const Login = () => {
         <button type="submit" id="log" class="submit">Log in</button>
       </form> 
       <p class="or">or</p>
-        <button id="fb-login" type="button" class="submit facebook">Continue with Facebook</button>
-        <button id="googleLogin" type="button" class="submit google">Continue with Google</button>
+        <button id="fb-login" type="button" class="submit facebook">
+          <img src="./images/facebook.png" alt="facebook icon"> Continue with Facebook
+        </button>
+        <button id="googleLogin" type="button" class="submit google">
+          <img src="./images/google.png" alt="google icon">Continue with Google
+        </button>
         <p class="p-log">
           Dont have an account yet? <a class="link" href="/signup">Sign Up</a>
         </p> 
-   </div>
+   </article>
   `;
 
   /* FIREBASE FORM */
@@ -74,8 +79,10 @@ export const Login = () => {
     e.preventDefault();
     try {
       await loginGoogle();
-      onNavigate('/home');
       console.log(loginGoogle);
+      onNavigate('/home');
+      saveUserData(loginGoogle.user.displayName, loginGoogle.user.photoURL);
+      console.log('datos de usuario: ', loginGoogle.user.displayName, loginGoogle.user.photoURL);
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
       if (error.code) {

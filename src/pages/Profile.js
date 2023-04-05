@@ -1,5 +1,5 @@
 // import { signOut } from 'firebase/auth';
-import { onNavigate } from '../router';
+import { onNavigate } from '../router.js';
 // import { auth } from '../firebase/config.js';
 
 export const profile = () => {

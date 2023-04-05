@@ -1,0 +1,113 @@
+.welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20% auto;
+    position: relative;
+}
+
+.wrapper{
+    width: 360px;
+    padding: 2rem 1rem;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.h1-form{
+    font-size: 32px;
+}
+
+.text{
+    margin: .5rem 3rem 1.5rem 3rem;
+    font-size: 18px;
+}
+
+.text-sign{
+    font-size: 18px;
+    margin: 0.5rem 2rem 1.5rem 2rem;
+}
+
+.img-container {
+    padding-bottom: 2.8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.img-container img {
+    width: auto;
+    max-width: 3rem;
+    height: auto;
+    margin: 0;
+}
+
+form input{
+    width: 323px;
+    height: 56px;
+    background: var(--clr-input);
+    border-radius: 100px;
+    border: none;
+    padding: 12px 20px; /* para mover el placeholder */
+    margin-bottom: 14px;
+    font-size: 16px;
+}
+
+form p{
+    text-align: right;
+    font-size: 0.8rem;
+    margin: 0 .1rem 0 0;
+}
+
+form p a{
+    color: gray;
+    text-decoration: none; /* para quitar el subrayado del link */
+}
+
+.submit{
+    width: 323px;
+    height: 56px;
+    border-radius: 100px;
+    border: none;
+    background-color: var(--clr-btn);
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    margin: 1rem 0 .5rem 0;
+    font-size: 16px;
+}
+
+.facebook{
+    background: var(--clr-facebook);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 27px;
+    padding: 14px 37px;
+    font-size: 16px;
+}
+
+.google{
+    background: var(--clr-white);
+    color: black;
+    border: 1px solid ;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 22px;
+    padding: 14px 37px;
+    font-size: 16px;
+}
+
+.or{
+    margin: 1rem;
+    color: gray; 
+}
+
+.p-log{
+    margin: 1rem;
+}
+
+.link{
+    color: var(--clr-violet);
+    text-decoration: none;
+}

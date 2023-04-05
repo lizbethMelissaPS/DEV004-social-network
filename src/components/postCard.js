@@ -1,22 +1,21 @@
 // import { doc } from 'firebase/firestore';
 
 // eslint-disable-next-line consistent-return
-export const setupPosts = (data) => {
-  if (data.length) {
+export const setupPosts = (data, user) => {
+  if (data.length || user.length) {
     let html = '';
     data.forEach((doc) => {
       const post = doc.data();
-      console.log(post);
       const section = `
         <article class="post-box">
           <section class="user-box">
             <aside class="info">
                 <figure class="profile-postbox">
-                <img src="./images/profilepic.jpg" alt="profile pic">
+                <img src="${user.photoURL}" alt="profile pic">
                 </figure>
               <aside class="auto-layout">
-                <p class="username-post"> dpretswellh </p>
-                <p class="date-post"> 12/03/23 </p>
+                <p class="username-post"> ${user.displayName} </p>
+                <p class="date-post"> ${post.date} </p>
               </aside>
             </aside>
             <aside class="options-post">

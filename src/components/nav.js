@@ -1,9 +1,9 @@
+import { logOut } from '../firebase/auth.js';
+
 export const nav = () => {
-  /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
-  const div = document.createElement('div');
-  const section = document.createElement('div');
-  section.innerHTML = `
-    <nav class="nav">
+  let html = '';
+  const section = `
+    <article class="nav">
         <section class="nav-container">
             <picture class="logo-container">
                 <img src="./images/Sonder-icon.png" alt="Sonder icon">
@@ -17,21 +17,18 @@ export const nav = () => {
             <figure class="icono-nav">
                 <img src="./images/settings.png" alt="" class="icon-post">
             </figure>
-            <a class="icono-nav" href="/login" id="logOut">
+            <a class="icono-nav" href="/login" id="logingout">
                 <img src="./images/log-out.png" alt="" class="icon-post">
             </a>
         </section>
-    </nav>
+    </article>
       `;
 
-  /* FIREBASE */
-  const logout = section.querySelector('#logOut');
+  const logout = section.querySelector('#logingout');
+  console.log(logout);
   logout.addEventListener('click', async () => {
-    await logout();
+    await logOut();
   });
-
-  /* INSERTA append */
-  div.append(section);
-
-  return div;
+  html += section;
+  return html;
 };

@@ -1,20 +1,21 @@
-import { subirArchivo } from '../firebase/storage';
-import { saveTask } from '../firebase/firestore';
+import { subirArchivo } from '../firebase/storage.js';
+import { saveTask } from '../firebase/firestore.js';
 
 export const createPost = () => {
   const div = document.createElement('div');
   const section = document.createElement('div');
   section.innerHTML = `
     <nav>
-      <div class="nav">
+      <div class="nave">
             <div class="img-container">
               <img src="./images/Sonder-icon.png" alt="">
             </div>
       </div>
     </nav>
     <h1>Create a post</h1>
-    <form id="create-form">
+    
         <article id="create-box" class="create-box">
+          <form id="create-form">
             <section id="file-box" class="file-box">
               <input type="file" id="post-img" class="post-img" hidden>
               <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
@@ -34,8 +35,9 @@ export const createPost = () => {
             <button id="btn-task-save" class="check">
             <img src="./images/check.png" alt="button check" class="check">
             </button>
-        </article>
+        
     </form>
+    </article>
     <div id="task-container"></div>
       `;
 
@@ -64,10 +66,11 @@ export const createPost = () => {
 
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // const postImg = createForm['post-img'];
+    const dt = new Date().toLocaleDateString();
+    console.log('FECHA: ', dt);
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    await saveTask(localStorage.getItem('url'), postDescription.value, postLocation.value);
+    saveTask(localStorage.getItem('url'), postDescription.value, postLocation.value, dt);
     createForm.reset();
   });
 

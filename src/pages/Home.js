@@ -2,7 +2,7 @@
 import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logOut } from '../firebase/auth.js';
-import { db, deleteTask } from '../firebase/firestore.js';
+import { deleteTask, db } from '../firebase/firestore.js';
 import { onNavigate } from '../router.js';
 import { setupPosts } from '../components/postCard.js';
 import { nav } from '../components/nav.js';
@@ -27,25 +27,24 @@ export const home = () => {
       <article class="posts"></article>
     </aside>
     `;
-
+  
   /// MOSTRAR
   onAuthStateChanged(auth, async (user) => {
     console.log('USeR : ', user);
     if (user) {
-      const querySnapshot = await getDocs(collection(db, 'post')); // traeme todos los datos que tienes hasta el momento
-      const htmlPosts = setupPosts(querySnapshot.docs);
+      const querySnapshot = await getDocs(collection(db, 'post'));//   traeme todos los datos que tienes hasta el momento
+      const htmlPosts = setupPosts(querySnapshot.docs, user);
       const postsContainer = section.querySelector('.posts');
       postsContainer.innerHTML = htmlPosts;
-      const navSelector = section.querySelector('#nav');
-      const htmlNav = `${nav()}`;
-      navSelector.innerHTML = htmlNav;
+      // const navSelector = section.querySelector('#nav');
+      // const htmlNav = `${nav()}`;
+      // navSelector.innerHTML = htmlNav;
     } else {
       console.log('USUER : ', user);
     }
 
     /// ELIMINAR
     const postsContainer = section.querySelector('.posts');
-    console.log('postsContainer : ', postsContainer);
     const btnDelete = postsContainer.querySelectorAll('.btn-delete');
     console.log('btnDelete : ', btnDelete);
     btnDelete.forEach((btn) => {
