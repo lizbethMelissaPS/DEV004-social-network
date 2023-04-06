@@ -4,14 +4,9 @@ import { addUser, loginGoogle, loginFacebook } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
 
 export const signUp = () => {
-  /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
   const title = document.createElement('h2');
-  /* crear botones createElement */
-  // const button = document.createElement("button");
   const buttonBack = document.createElement('button');
-  // const inputEmail = document.createElement("input");
-  // const inputPass = document.createElement("input");
   const section = document.createElement('div');
   section.innerHTML = `
     <article class="wrapper">

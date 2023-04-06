@@ -13,7 +13,11 @@ export const home = () => {
   const section = document.createElement('div');
   section.innerHTML = `
   <header class='header-home'>
-    <nav id="nav"> Icono </nav>
+    <nav id="nav">  
+      <picture id="logo-home" class="logo-container">
+        <img src="./images/Sonder-icon.png" alt="Sonder icon">
+      </picture> 
+    </nav>
     <input type="search" class="search" placeholder="search">
           <button id='createPost' class="create-home">
             <img src="./images/create.png" class="create-home">
@@ -21,11 +25,14 @@ export const home = () => {
                 
           
   </header>
-  <button id='logout' class="facebook">Log Out</button>
   <aside class='aside'>
       <article class="posts"></article>
     </aside>
     `;
+  const logoHome = section.querySelector('#nav');
+  logoHome.addEventListener('click', () => {
+    document.querySelector('.nav-container').classList.toggle('show');
+  });
 
   /// MOSTRAR
   onAuthStateChanged(auth, async (user) => {
@@ -35,9 +42,8 @@ export const home = () => {
       const htmlPosts = setupPosts(querySnapshot.docs, user);
       const postsContainer = section.querySelector('.posts');
       postsContainer.innerHTML = htmlPosts;
-      // const navSelector = section.querySelector('#nav');
-      // const htmlNav = `${nav()}`;
-      // navSelector.innerHTML = htmlNav;
+      const navSelector = section.querySelector('#nav');
+      navSelector.appendChild(nav());
     } else {
       console.log('USUER : ', user);
     }
@@ -55,13 +61,13 @@ export const home = () => {
   });
   ///
 
-  /* FIREBASE */
+  /*
   const logout = section.querySelector('#logout');
   logout.addEventListener('click', async () => {
     await logOut();
     console.log('user signout');
     onNavigate('/login');
-  });
+  }); */
 
   const createPost = section.querySelector('#createPost');
   createPost.addEventListener('click', async () => {

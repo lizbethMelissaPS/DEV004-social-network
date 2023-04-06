@@ -5,6 +5,22 @@ import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
 /* Para que este disponoble en otro lado export */
+export async function loginWithValues(email, password) {
+  try {
+    await login(email, password);
+    onNavigate('/home');
+    showMessage(`Welcome ${login.user.email}`, 'success');
+  } catch (error) {
+    if (error.code === 'auth/wrong-password') {
+      showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
+    } else if (error.code === 'auth/user-not-found') {
+      showMessage('User not found', 'error');
+    } else if (error.code) {
+      showMessage(error.message, 'error');
+    }
+  }
+}
+
 export const Login = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
@@ -51,25 +67,7 @@ export const Login = () => {
     const password = loginForm['login-password'].value;
     // eslint-disable-next-line no-console
     console.log(email, password);
-
-    try {
-      await login(email, password);
-      /* const dt = new Date();
-      update(ref(database, `users/${login.user.uid}`), {
-        last_login: dt,
-      }); */
-      onNavigate('/home');
-
-      showMessage(`Welcome ${login.user.email}`, 'success');
-    } catch (error) {
-      if (error.code === 'auth/wrong-password') {
-        showMessage('Wrong password', 'error'); // despues de la coma viene el tipo (estilo que le cambia el color al msg)
-      } else if (error.code === 'auth/user-not-found') {
-        showMessage('User not found', 'error');
-      } else if (error.code) {
-        showMessage(error.message, 'error');
-      }
-    }
+    loginWithValues(email, password);
   });
 
   /* Google log-in */

@@ -1,20 +1,24 @@
 .nav{
     display: flex;
     width: 125px;
-    background: rgb(255, 255, 255);
-    border: 1.18208px solid rgba(137, 136, 136, 0.5);
+    /* border: 1.18208px solid rgba(137, 136, 136, 0.5); */
     border-radius: 56px;
 }
 
 .nav-container{
-    align-items: center;
-    flex-wrap: wrap;
-    padding-top: 30px;
+    position: absolute;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 1s;
+    background: rgb(255, 255, 255);
+    /* padding-top: 30px; */
+}
+
+.nav-container.show{
+    max-height: 400px;
 }
 
 .logo-container{
-    padding-bottom: 2.8rem;
-    width: 125px;
     display: flex;
     justify-content: center;
 }
