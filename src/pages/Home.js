@@ -34,6 +34,7 @@ export const home = () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
 
+  
   /// MOSTRAR
   onAuthStateChanged(auth, async (user) => {
     console.log('USeR : ', user);
