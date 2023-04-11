@@ -34,7 +34,6 @@ export const home = () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
 
-  
   /// MOSTRAR
   onAuthStateChanged(auth, async (user) => {
     console.log('USeR : ', user);
@@ -59,16 +58,25 @@ export const home = () => {
         deleteTask(dataset.id);
       });
     });
-  });
-  ///
 
-  /*
-  const logout = section.querySelector('#logout');
-  logout.addEventListener('click', async () => {
-    await logOut();
-    console.log('user signout');
-    onNavigate('/login');
-  }); */
+    /// like
+    
+    const likeIcon = postsContainer.querySelector('#like');
+    likeIcon.addEventListener('click', () => {
+      console.log('contando');
+      likeIcon.classList.toggle('red');
+      const querySnapshot = getDocs(collection(db, 'post'));
+      let likeCounter = querySnapshot.docs.data().likes;
+      if (likeIcon.classList.contains('red')) {
+        console.log(likeCounter += 1);
+        // addDocumentIdToUserCollection(userId, doc.id, 'myLikes');
+      } else {
+        console.log(likeCounter -= 1);
+        // deleteDocumentIdFromUserCollection(userId, doc.id, 'myLikes');
+      }
+      // updateDocument('posts', doc.id, 'likes', likeCounter);
+    });
+  });
 
   const createPost = section.querySelector('#createPost');
   createPost.addEventListener('click', async () => {

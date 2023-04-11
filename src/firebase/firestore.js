@@ -7,9 +7,9 @@ import { app } from './config';
 export const db = getFirestore(app);
 
 // guardar dato
-export const saveTask = (name, photo, img, description, location, date) => {
+export const saveTask = (name, photo, img, description, location, date, likes) => {
   addDoc(collection(db, 'post'), {
-    name, photo, img, description, location, date,
+    name, photo, img, description, location, date, likes,
   });
 };
 

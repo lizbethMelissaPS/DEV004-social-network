@@ -132,3 +132,8 @@
     font-size: 11.9919px;
     color: var(--clr-postgray);
 }
+
+.red {
+    filter: invert(19%) sepia(86%) saturate(7249%) hue-rotate(8deg) brightness(98%) contrast(112%);
+    fill: red;
+}

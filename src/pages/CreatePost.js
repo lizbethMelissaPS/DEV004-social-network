@@ -1,19 +1,25 @@
 import { subirArchivo } from '../firebase/storage.js';
 import { saveTask } from '../firebase/firestore.js';
 import { currentUser } from '../firebase/auth.js';
+import { nav } from '../components/nav.js';
+import { onNavigate } from '../router.js';
 
 export const createPost = () => {
   const div = document.createElement('div');
   const section = document.createElement('div');
   section.innerHTML = `
-    <nav>
-      <div class="nave">
-            <div class="img-container">
-              <img src="./images/Sonder-icon.png" alt="">
-            </div>
-      </div>
+
+  <header class='header-home'>
+    <nav id="nav">  
+      <picture id="logo-home" class="logo-container">
+        <img src="./images/Sonder-icon.png" alt="Sonder icon">
+      </picture> 
     </nav>
-    <h1>Create a post</h1>
+      <h1>Create a post</h1>
+
+  </header>
+
+    
     
         <article id="create-box" class="create-box">
           <form id="create-form">
@@ -47,8 +53,14 @@ export const createPost = () => {
   const check = section.querySelector('.check');
   checkBox.addEventListener('click', () => {
     check.click();
-    // onNavigate('/home');
+    // 
   }); */
+
+  const logoCreate = section.querySelector('#nav');
+  logoCreate.appendChild(nav());
+  logoCreate.addEventListener('click', () => {
+    document.querySelector('.nav-container').classList.toggle('show');
+  });
 
   const fileBox = section.querySelector('.file-box');
   const fileInput = section.querySelector('#post-img');
@@ -67,13 +79,14 @@ export const createPost = () => {
 
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const myLike = [];
     const user = currentUser();
     const dt = new Date().toLocaleDateString();
-    console.log('FECHA: ', dt);
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt);
+    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, myLike);
     createForm.reset();
+    onNavigate('/home');
   });
 
   div.append(section);
