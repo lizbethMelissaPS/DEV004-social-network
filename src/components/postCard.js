@@ -6,9 +6,8 @@ export const setupPosts = (data, user) => {
   if (data.length || user.length) {
     let html = '';
     data.forEach((doc) => {
-      // const userA = currentUser();
       const post = doc.data();
-      // const likeCounter = post.likes;
+      console.log('post: ', post);
       const section = `
         <article class="post-box">
           <section class="user-box">
@@ -37,8 +36,8 @@ export const setupPosts = (data, user) => {
           </section>
           <section class="interaction-box">
             <figure class=" item">
-            <img id="like" src="./images/like-icon.svg" alt="" class="icon-post">
-              <p class="count"> 156</p>
+            <img data-id="${doc.id}" src="./images/like-icon.svg" alt="" class="ico-like icon-post">
+              <p class="count">${post.like}</p>
             </figure>
             <figure class="item">
               <img src="./images/comment.png" alt="" class="icon-post">
