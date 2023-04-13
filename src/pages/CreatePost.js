@@ -79,12 +79,13 @@ export const createPost = () => {
 
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const myLike = [];
+    const like = [];
+    const userLike = [];
     const user = currentUser();
     const dt = new Date().toLocaleDateString();
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, myLike);
+    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, userLike);
     createForm.reset();
     onNavigate('/home');
   });

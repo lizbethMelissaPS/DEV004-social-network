@@ -1,7 +1,9 @@
 import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logOut } from '../firebase/auth.js';
-import { deleteTask, db } from '../firebase/firestore.js';
+import {
+  deleteTask, db, updateTask,
+} from '../firebase/firestore.js';
 import { onNavigate } from '../router.js';
 import { setupPosts } from '../components/postCard.js';
 import { nav } from '../components/nav.js';
@@ -39,6 +41,9 @@ export const home = () => {
     console.log('USeR : ', user);
     if (user) {
       const querySnapshot = await getDocs(collection(db, 'post'));//   traeme todos los datos que tienes hasta el momento
+      console.log('querySnapshot : ', querySnapshot);
+      console.log('querySnapshot.docs : ', querySnapshot.docs);
+
       const htmlPosts = setupPosts(querySnapshot.docs, user);
       const postsContainer = section.querySelector('.posts');
       postsContainer.innerHTML = htmlPosts;
@@ -60,8 +65,8 @@ export const home = () => {
     });
 
     /// like
-    
-    const likeIcon = postsContainer.querySelector('#like');
+
+    /* const likeIcon = postsContainer.querySelector('#like');
     likeIcon.addEventListener('click', () => {
       console.log('contando');
       likeIcon.classList.toggle('red');
@@ -75,7 +80,38 @@ export const home = () => {
         // deleteDocumentIdFromUserCollection(userId, doc.id, 'myLikes');
       }
       // updateDocument('posts', doc.id, 'likes', likeCounter);
+    }); */
+    const postsContainerr = section.querySelector('.posts');
+    const like = postsContainerr.querySelectorAll('.ico-like');
+    const querySnapshot2 = await getDocs(collection(db, 'post'));
+    
+    querySnapshot2.forEach((doc) => {
+      
+      const post = doc.data();
+      console.log('post home: ', post);
+      like.forEach((element) => {
+        let contador = 0;
+        element.addEventListener('click', ({ target: { dataset } }) => {
+         
+          const idPost = dataset.id;
+          const uidUser = user.uid;
+          const idNoIgual = post.likeUserId !== uidUser;
+          console.log('uidUser : ', uidUser);
+          if (idNoIgual) {
+            like.classList.toggle('red');
+            console.log('no igual: ');
+            console.log(contador += 1);
+            updateTask(idPost, { like: contador, likeUserId: uidUser });
+          } else {
+            console.log('igual');
+            console.log(contador -= 1);
+            updateTask(idPost, { like: contador });
+          }
+        });
+      });
     });
+
+    ///
   });
 
   const createPost = section.querySelector('#createPost');
