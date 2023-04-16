@@ -85,7 +85,7 @@ export const createPost = () => {
     const dt = new Date().toLocaleDateString();
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(user.displayName, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, userLike);
+    saveTask(user.displayName, user.uid, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, userLike);
     createForm.reset();
     onNavigate('/home');
   });
