@@ -7,7 +7,6 @@ export const setupPosts = (data, user) => {
     let html = '';
     data.forEach((doc) => {
       const post = doc.data();
-      console.log('post: ', post);
       const section = `
         <article class="post-box">
           <section class="user-box">

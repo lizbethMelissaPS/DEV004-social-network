@@ -41,9 +41,6 @@ export const home = () => {
     console.log('USeR : ', user);
     if (user) {
       const querySnapshot = await getDocs(collection(db, 'post'));//   traeme todos los datos que tienes hasta el momento
-      console.log('querySnapshot : ', querySnapshot);
-      console.log('querySnapshot.docs : ', querySnapshot.docs);
-
       const htmlPosts = setupPosts(querySnapshot.docs, user);
       const postsContainer = section.querySelector('.posts');
       postsContainer.innerHTML = htmlPosts;
@@ -60,11 +57,9 @@ export const home = () => {
 
     const querySnapshot = await getDocs(collection(db, 'post'));
     const data = querySnapshot.docs;
-    console.log('data : ', data);
     data.forEach((element) => {
       const post = element.data();
       // localStorage.setItem('postUserId', post.uid);
-      console.log('post : ', post);
 
       if (user.uid === post.uid) {
         console.log('tu post');

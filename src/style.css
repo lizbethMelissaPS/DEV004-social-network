@@ -23,4 +23,32 @@
 }
 
 
+@media (min-width: 768px)  {
+    .header-home {
+        margin-left: 21%;
+        gap: 58px;
+    }
+    .search {
+        width: 200px;
+    }
+}
 
+@media (min-width: 1200px)  {
+    .header-home {
+        margin-left: 31%;
+        gap: 33px;
+    }
+    .search {
+        width: 335px;
+        margin-left: 2.1rem;
+    }
+    .nav-container {
+        left: 33.5rem;
+        overflow: inherit;
+        padding-top: 30px;
+    }
+
+    .text-create{
+        padding-left: 120px;
+    }
+}

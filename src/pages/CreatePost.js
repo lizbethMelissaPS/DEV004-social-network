@@ -15,7 +15,7 @@ export const createPost = () => {
         <img src="./images/Sonder-icon.png" alt="Sonder icon">
       </picture> 
     </nav>
-      <h1>Create a post</h1>
+      <h1 class="text-create">Create a post</h1>
 
   </header>
 

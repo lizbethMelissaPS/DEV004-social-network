@@ -54,7 +54,6 @@ export function subirArchivo(archivo) {
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-        console.log('File available at', url);
         localStorage.setItem('url', url);
         mensajeFinalizado(url);
       });
