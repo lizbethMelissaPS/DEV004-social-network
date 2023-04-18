@@ -3,11 +3,11 @@ import { updateTask } from '../firebase/firestore.js';
 
 // eslint-disable-next-line consistent-return
 export const setupPosts = (data, user) => {
-  if (data.length || user.length) {
-    let html = '';
-    data.forEach((doc) => {
-      const post = doc.data();
-      const section = `
+  // if (user.length) {
+  let html = '';
+  data.forEach((doc) => {
+    const post = doc.data();
+    const section = `
         <article class="post-box">
           <section class="user-box">
             <aside class="info">
@@ -51,12 +51,12 @@ export const setupPosts = (data, user) => {
           </section>
         </article>
               `;
-      html += section;
-    });
+    html += section;
+  });
 
-    return html;
-    //   posts.innerHTML = html;
-  }
+  return html;
+  //   posts.innerHTML = html;
+  // }
   // posts.innerHTML = '<p> Post vacio </p>';
   console.log('no posts');
 };
