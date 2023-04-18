@@ -1,6 +1,6 @@
 import { getDocs, collection } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth, logOut } from '../firebase/auth.js';
+import { auth, currentUser, logOut } from '../firebase/auth.js';
 import {
   deleteTask, db, updateTask,
 } from '../firebase/firestore.js';
@@ -55,14 +55,49 @@ export const home = () => {
 
     /// ELIMINAR
     const postsContainer = section.querySelector('.posts');
-    const btnDelete = postsContainer.querySelectorAll('.btn-delete');
+    const btnDelete = postsContainer.querySelector('.btn-delete');
     console.log('btnDelete : ', btnDelete);
-    btnDelete.forEach((btn) => {
+
+    const querySnapshot = await getDocs(collection(db, 'post'));
+    const data = querySnapshot.docs;
+    console.log('data : ', data);
+    data.forEach((element) => {
+      const post = element.data();
+      // localStorage.setItem('postUserId', post.uid);
+      console.log('post : ', post);
+
+      if (user.uid === post.uid) {
+        console.log('tu post');
+        btnDelete.disable = false;
+        btnDelete.addEventListener('click', ({ target: { dataset } }) => {
+          console.log('id: ', dataset.id);
+          deleteTask(dataset.id);
+          console.log('eliminado: ');
+        });
+      } else {
+        console.log('no tu post');
+        btnDelete.disable = true;
+      }
+    });
+
+    /*
+    if (user.uid === localStorage.getItem('postUserId')) {
+      console.log('tu post');
+      btnDelete.disable = false;
+      btnDelete.addEventListener('click', ({ target: { dataset } }) => {
+        console.log('id: ', dataset.id);
+        deleteTask(dataset.id);
+      });
+    } else {
+      console.log('no tu post');
+      btnDelete.disable = true;
+    } */
+    /* btnDelete.forEach((btn) => {
       btn.addEventListener('click', ({ target: { dataset } }) => {
         console.log('id: ', dataset.id);
         deleteTask(dataset.id);
       });
-    });
+    }); */
 
     /// like
 
@@ -84,19 +119,17 @@ export const home = () => {
     const postsContainerr = section.querySelector('.posts');
     const like = postsContainerr.querySelectorAll('.ico-like');
     const querySnapshot2 = await getDocs(collection(db, 'post'));
-    
+
     querySnapshot2.forEach((doc) => {
-      
       const post = doc.data();
-      console.log('post home: ', post);
+      // console.log('post home: ', post);
       like.forEach((element) => {
         let contador = 0;
         element.addEventListener('click', ({ target: { dataset } }) => {
-         
           const idPost = dataset.id;
           const uidUser = user.uid;
           const idNoIgual = post.likeUserId !== uidUser;
-          console.log('uidUser : ', uidUser);
+          // console.log('uidUser : ', uidUser);
           if (idNoIgual) {
             like.classList.toggle('red');
             console.log('no igual: ');
