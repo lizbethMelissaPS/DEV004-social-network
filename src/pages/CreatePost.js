@@ -71,12 +71,17 @@ export const createPost = () => {
     const userValue = localStorage.getItem('username');
     let userName = user.displayName;
     userName = (!userName) ? userValue : userName;
+
+    const defaultprofile = './images/profile-pic.png';
+    let profilePic = user.photoURL;
+    profilePic = (!profilePic) ? defaultprofile : profilePic;
+
     const like = [];
     const likeUserId = [];
     const dt = new Date().toLocaleDateString();
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(userName, user.email, user.uid, user.photoURL, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, likeUserId);
+    saveTask(userName, user.email, user.uid, profilePic, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, likeUserId);
     createForm.reset();
     onNavigate('/home');
   });
