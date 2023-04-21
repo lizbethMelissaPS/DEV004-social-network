@@ -5,11 +5,6 @@ import {
 // Crear una referencia raíz
 const storage = getStorage();
 // a esta función la invocamos para mostrar el mensaje final después del upload
-function mensajeFinalizado(url) {
-  const elMensaje = document.getElementById('file-box');
-  const textoMensaje = `<img src="${url}" class="preview"> `;
-  elMensaje.innerHTML = textoMensaje;
-}
 
 export function subirArchivo(archivo) {
   console.log('entramos!!', archivo);
@@ -55,7 +50,6 @@ export function subirArchivo(archivo) {
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
         localStorage.setItem('url', url);
-        mensajeFinalizado(url);
       });
     },
   );

@@ -3,7 +3,7 @@ import { onNavigate } from '../router.js';
 
 const lougOutBtn = () => {
   const btn = document.createElement('button');
-  btn.className = 'icono-nav';
+  btn.className = 'icono-nav btn-nav';
   btn.id = 'loginout';
   btn.addEventListener('click', async () => {
     await logOut();

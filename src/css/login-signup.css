@@ -2,14 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20% auto;
+    margin: 72% auto;
     position: relative;
 }
 
 .wrapper{
     width: 360px;
     padding: 2rem 1rem;
-    margin: 50px auto;
+    margin: 0px auto;
     text-align: center;
 }
 

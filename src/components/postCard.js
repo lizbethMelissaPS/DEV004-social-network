@@ -1,6 +1,3 @@
-// import { doc } from 'firebase/firestore';
-import { updateTask } from '../firebase/firestore.js';
-
 // eslint-disable-next-line consistent-return
 export const setupPosts = (data, user) => {
   // if (user.length) {
@@ -20,9 +17,9 @@ export const setupPosts = (data, user) => {
               </aside>
             </aside>
             <aside class="options-post">
-              <button class='btn-delete' data-id="${doc.id}">
-                delete
-              </button>
+              ${post.email === user.email ? `<button class='btn-delete btn-post' data-id="${doc.id}">
+                ...
+              </button>` : ''} 
           </section>
           <section class="card">
             <figure class="photo-post">
@@ -35,7 +32,7 @@ export const setupPosts = (data, user) => {
           </section>
           <section class="interaction-box">
             <figure class=" item">
-            <img data-id="${doc.id}" src="./images/like-icon.svg" alt="" class="ico-like icon-post">
+              <img data-id="${doc.id}" src="./images/like-icon.svg" alt="" class="icon-like">
               <p class="count">${post.like}</p>
             </figure>
             <figure class="item">
@@ -55,10 +52,4 @@ export const setupPosts = (data, user) => {
   });
 
   return html;
-  //   posts.innerHTML = html;
-  // }
-  // posts.innerHTML = '<p> Post vacio </p>';
-  console.log('no posts');
 };
-
-// <img src="./images/like.png" alt="" class="icon-post">

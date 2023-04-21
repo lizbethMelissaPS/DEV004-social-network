@@ -35,20 +35,24 @@
 
 @media (min-width: 1200px)  {
     .header-home {
-        margin-left: 31%;
-        gap: 33px;
+        margin-left: 25.5%;
+        gap: 5px;
     }
     .search {
         width: 335px;
-        margin-left: 2.1rem;
+        margin-left: 3.6rem;
     }
     .nav-container {
-        left: 33.5rem;
+        left: 20.5rem;
         overflow: inherit;
         padding-top: 30px;
     }
 
     .text-create{
-        padding-left: 120px;
+        padding-left: 140px;
+    }
+
+    .welcome{
+        margin: 20% auto;
     }
 }

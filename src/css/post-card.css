@@ -7,7 +7,7 @@
     padding-top: 7.5px;
     padding-left: 8.27px;
     border-bottom: 1.18208px solid rgba(137, 136, 136, 0.5);
-    margin: 50px auto;
+    margin: 11px auto;
 }
 .user-box{
     width: 395.04px;
@@ -15,8 +15,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 120px;
-
+    /* gap: 120px; */
 }
 
 .info{
@@ -25,7 +24,8 @@
     gap: 13px;
     order: 0;
     flex-grow: 0;
-    width: 236.74px;
+    /* width: 236.74px; */
+    width: 357.74px;
     height: 43.74px;
 }
 .profile-postbox{
@@ -55,12 +55,19 @@
     font-size: 9.45665px;
     color: var(--clr-postgray);
 }
+
+.btn-post{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    font-size: 30px;
+}
+
 .options-post{
     width: 37.83px;
-    height: 37.83px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+    text-align: center;
+    padding-bottom: 19px;
 }
 
 .card{
@@ -131,9 +138,4 @@
     font-weight: 500;
     font-size: 11.9919px;
     color: var(--clr-postgray);
-}
-
-.red {
-    filter: invert(19%) sepia(86%) saturate(7249%) hue-rotate(8deg) brightness(98%) contrast(112%);
-    fill: red;
 }

@@ -1,10 +1,8 @@
-// import { async } from '@firebase/util';
-// import { update, ref } from 'firebase/database';
 import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
-// import { auth, database } from "../firebase/config.js";
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
 /* Para que este disponoble en otro lado export */
+
 export async function loginWithValues(email, password) {
   try {
     await login(email, password);
@@ -24,11 +22,6 @@ export async function loginWithValues(email, password) {
 export const Login = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
   const div = document.createElement('div');
-  const title = document.createElement('h2');
-  /* crear botones createElement */
-  const button = document.createElement('button');
-  const buttonBack = document.createElement('button');
-  const buttonProfile = document.createElement('button');
   const section = document.createElement('div');
   section.innerHTML = `
     <article class="wrapper">
@@ -60,12 +53,10 @@ export const Login = () => {
 
   /* FIREBASE FORM */
   const loginForm = section.querySelector('#login-form');
-
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = loginForm['login-email'].value;
     const password = loginForm['login-password'].value;
-    // eslint-disable-next-line no-console
     console.log(email, password);
     loginWithValues(email, password);
   });
@@ -102,24 +93,8 @@ export const Login = () => {
     }
   });
 
-  /* AGREGAR TEXTO A LOS BOTONES textContent */
-  button.textContent = 'Entrar';
-  buttonBack.textContent = 'Regresa';
-  buttonProfile.textContent = 'Profile';
-  title.textContent = 'Inicia secion LOGIN';
-
-  button.addEventListener('click', () => {
-    onNavigate('/home');
-  });
-  buttonBack.addEventListener('click', () => {
-    onNavigate('/');
-  });
-  buttonProfile.addEventListener('click', () => {
-    onNavigate('/profile');
-  });
-
   /* INSERTA append */
-  div.append(title, buttonProfile, button, buttonBack, section);
+  div.append(section);
 
   return div;
 };

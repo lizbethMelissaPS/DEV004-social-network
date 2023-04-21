@@ -1,12 +1,14 @@
-// import { getDatabase, set, ref } from 'firebase/database';
 import { onNavigate } from '../router.js';
 import { addUser, loginGoogle, loginFacebook } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
 
+export function saveUser(name) {
+  console.log('fn saveuser', name);
+  return name;
+}
+
 export const signUp = () => {
   const div = document.createElement('div');
-  const title = document.createElement('h2');
-  const buttonBack = document.createElement('button');
   const section = document.createElement('div');
   section.innerHTML = `
     <article class="wrapper">
@@ -42,17 +44,13 @@ export const signUp = () => {
     const lastname = signupForm['singup-lastname'].value;
     const email = signupForm['singup-email'].value;
     const password = signupForm['singup-password'].value;
-    // eslint-disable-next-line no-console
+
+    localStorage.setItem('username', username);
     console.log(username, lastname, email, password);
 
     try {
-      /* set(ref(database, `users/${addUser.user.uid}`), {
-        name: username,
-        lastname,
-        email,
-      }); */
       addUser(email, password);
-      onNavigate('/profile');
+      onNavigate('/home');
       showMessage(`Welcome ${addUser.user.email}`, 'success');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -109,21 +107,9 @@ export const signUp = () => {
       }
     }
   });
-  // button.textContent = "crear cuenta";
-  buttonBack.textContent = 'Regresa';
-  // title.textContent = "Registro de nueva cuenta";
-
-  /* evento a boton */
-  // button.addEventListener("click", () => {
-  //   onNavigate("/");
-  // });
-  buttonBack.addEventListener('click', () => {
-    onNavigate('/');
-  });
 
   /* INSERTA append */
-  div.append(title, buttonBack, section);
+  div.append(section);
 
   return div;
 };
-// inputEmail, inputPass, button,
