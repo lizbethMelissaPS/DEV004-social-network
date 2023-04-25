@@ -53,8 +53,8 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 ## 4. Historias de usuario
 
 **Primera HU**
-**Como**: mochilera me gustaría registrarme a una red de viajeros como yo
-**Para**:  ver que lugares podria visitar en un futuro
+ **Como**: mochilera me gustaría registrarme a una red de viajeros como yo 
+ **Para**:  ver que lugares podria visitar en un futuro
 
 - **Criterios de aceptación**
   - Visualizar formulario para registro de usuario
