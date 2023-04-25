@@ -32,23 +32,3 @@ export const nav = () => {
   section.appendChild(lougOutBtn());
   return section;
 };
-
-
-//   const section = `
-//     <article class="nav">
-//         <section class="nav-container">
-
-//             <button class="icono-nav" id="logingout" onclick='logOutFun()'>
-//                 <img src="./images/log-out.png" alt="" class="icon-post">
-//             </button>
-//         </section>
-//     </article>
-//       `;
-
-/* const logout = section.querySelector('#logingout');
-  console.log(logout);
-  logout.addEventListener('click', async () => {
-    await logOut();
-  }); */
-//   html += section;
-//   return html;

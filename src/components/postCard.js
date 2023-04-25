@@ -1,6 +1,4 @@
-// eslint-disable-next-line consistent-return
 export const setupPosts = (data, user) => {
-  // if (user.length) {
   let html = '';
   data.forEach((doc) => {
     const post = doc.data();

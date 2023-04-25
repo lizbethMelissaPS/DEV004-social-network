@@ -68,13 +68,14 @@ export const createPost = () => {
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const user = currentUser();
+
     const userValue = localStorage.getItem('username');
     let userName = user.displayName;
     userName = (!userName) ? userValue : userName;
 
-    const defaultprofile = './images/profile-pic.png';
+    const defaultPic = './images/profile-pic.png';
     let profilePic = user.photoURL;
-    profilePic = (!profilePic) ? defaultprofile : profilePic;
+    profilePic = (!profilePic) ? defaultPic : profilePic;
 
     const like = [];
     const likeUserId = [];

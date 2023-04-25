@@ -9,7 +9,6 @@ import {
 import { onNavigate } from '../router.js';
 import { setupPosts } from '../components/postCard.js';
 import { nav } from '../components/nav.js';
-// import { auth, db } from '../firebase/config.js';
 
 export const home = () => {
   const div = document.createElement('div');
