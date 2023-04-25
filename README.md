@@ -10,10 +10,8 @@
 * [2. Consideraciones generales](#2-consideraciones-generales)
 * [3. Definición del producto](#2-definición-del-producto)
 * [4. Historias de usuario](#4-historias-de-usuario)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Hacker edition](#6-hacker-edition)
-* [7. Entrega](#7-entrega)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
+* [5. User Experience ](#5-user-experience)
+* [6. Consideraciones técnicas Front-end](#6-consideraciones-técnicas-front-end)
 
 ## 1. Resumen del proyecto
 
