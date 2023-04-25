@@ -102,7 +102,9 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
   - Ver post en el muro con imagen, fecha, descripcion y ubicacion.
 
 **Cuarta HU**
+
 **Como**: nómade digital me gustaría inspirarme con diferentes publicaciones y poder dar like a las que me gustaron mas
+
 **Para**:  ver cual seria mi proximo destino.
 
 - **Criterios de aceptación**
@@ -116,7 +118,6 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 **Quinto HU**
 
 **Como**: usuario distraido quiero borrar publicaciones antiguas  
-
 **Para**:  que ya no se visualice en el muro.
 
 - **Criterios de aceptación**
