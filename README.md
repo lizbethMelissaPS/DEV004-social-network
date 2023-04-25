@@ -55,7 +55,6 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 **Primera HU**
 
 **Como**: mochilera me gustaría registrarme a una red de viajeros como yo 
-
 **Para**:  ver que lugares podria visitar en un futuro
 
 - **Criterios de aceptación**
@@ -70,7 +69,6 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 **Segunda HU**
 
 **Como**: usuaria de sonder quiero porder acceder a mi cuenta a travez de mi laptop
-
 **Para**:  acceder a ver todo el contenido 
 
 - **Criterios de aceptación**
@@ -87,7 +85,6 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 **Tercera HU**
 
 **Como**: fotógrafo me gustaría publicar las fotos de los lugares donde viajo y preguntar como mejorar mi fotografia
-
 **Para**:  que la gente conozca sobre mi trabajo
 
 - **Criterios de aceptación**
@@ -104,7 +101,6 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 **Cuarta HU**
 
 **Como**: nómade digital me gustaría inspirarme con diferentes publicaciones y poder dar like a las que me gustaron mas
-
 **Para**:  ver cual seria mi proximo destino.
 
 - **Criterios de aceptación**
@@ -158,8 +154,21 @@ Para diseñar el prototipo usamos [_`figma`_](#figma)
 <p align="center" width="100%">
     <img width="100%" src="./src/images/colores.png"> 
 </p>
+
 ##### Fuente
 ![Fuente](./src/images/Fuente.png)
+
+##### Logo 
+
+<p align="center" width="100%">
+    <img width="40%" src="./src/images/sonder.png"> 
+</p>
+
+##### Icono del logo
+
+<p align="center" width="100%">
+    <img width="100%" src="./src/images/Sonder-icon.png"> 
+</p>
 
 
 ## Testeos de usabilidad
