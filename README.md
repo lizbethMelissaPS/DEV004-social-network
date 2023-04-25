@@ -53,8 +53,10 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
 ## 4. Historias de usuario
 
 **Primera HU**
- **Como**: mochilera me gustaría registrarme a una red de viajeros como yo 
- **Para**:  ver que lugares podria visitar en un futuro
+
+**Como**: mochilera me gustaría registrarme a una red de viajeros como yo 
+
+**Para**:  ver que lugares podria visitar en un futuro
 
 - **Criterios de aceptación**
   - Visualizar formulario para registro de usuario
@@ -66,8 +68,11 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
   - Mostrar mensaje si hay algun error para registrarse
 
 **Segunda HU**
+
 **Como**: usuaria de sonder quiero porder acceder a mi cuenta a travez de mi laptop
+
 **Para**:  acceder a ver todo el contenido 
+
 - **Criterios de aceptación**
   - Visualizar formulario para iniciar sesion
   - Iniciar sesion
@@ -80,7 +85,9 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
   - Test unitarios.
 
 **Tercera HU**
+
 **Como**: fotógrafo me gustaría publicar las fotos de los lugares donde viajo y preguntar como mejorar mi fotografia
+
 **Para**:  que la gente conozca sobre mi trabajo
 
 - **Criterios de aceptación**
@@ -107,7 +114,9 @@ En cuanto a los viajeros y las redes sociales, resulta sorprendente descubrir qu
   - Solo permitir un like por usuario
 
 **Quinto HU**
+
 **Como**: usuario distraido quiero borrar publicaciones antiguas  
+
 **Para**:  que ya no se visualice en el muro.
 
 - **Criterios de aceptación**
