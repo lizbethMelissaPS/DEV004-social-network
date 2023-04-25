@@ -5,8 +5,8 @@ import { nav } from '../components/nav.js';
 import { onNavigate } from '../router.js';
 
 export const createPost = () => {
-  const div = document.createElement('div');
-  const section = document.createElement('div');
+  const main = document.createElement('main');
+  const section = document.createElement('article');
   section.innerHTML = `
 
   <header class='header-home'>
@@ -24,9 +24,7 @@ export const createPost = () => {
               <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
             </section>
 
-            <section class="gallery"></section>
-
-            <p class="p-create" >Add a description</p>
+            <p class="p-create">Add a description</p>
             <label for="description"></label>
 
             <input id="post-description" type="text" autocomplete="off" placeholder="What do you see in this picture?" maxlength="16">
@@ -38,15 +36,13 @@ export const createPost = () => {
             <button id="btn-task-save" class="check">
             <img src="./images/check.png" alt="button check" class="check">
             </button>
-
-    </form>
-    </article>
-    <div id="task-container"></div>
+          </form>
+        </article>
       `;
 
-  const logoCreate = section.querySelector('#nav');
-  logoCreate.appendChild(nav());
-  logoCreate.addEventListener('click', () => {
+  const logoNav = section.querySelector('#nav');
+  logoNav.appendChild(nav());
+  logoNav.addEventListener('click', () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
 
@@ -59,7 +55,6 @@ export const createPost = () => {
   fileInput.addEventListener('change', (evento) => {
     evento.preventDefault();
     const archivo = evento.target.files[0];
-    console.log(archivo);
     subirArchivo(archivo);
   });
 
@@ -87,7 +82,7 @@ export const createPost = () => {
     onNavigate('/home');
   });
 
-  div.append(section);
+  main.append(section);
 
-  return div;
+  return main;
 };

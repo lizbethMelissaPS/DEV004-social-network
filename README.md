@@ -1,7 +1,7 @@
 # Creando una Red Social
 
 <p align="center" width="100%">
-    <img width="100%" src="./src/images/sonder.png"> 
+    <img width="50%" src="./src/images/sonder.png"> 
 </p>
 
 ## Índice
@@ -131,7 +131,7 @@ Para diseñar el prototipo usamos [_`figma`_](#figma)
 
 ***Celular:***
 <p align="center" width="100%">
-    <img width="100%" src="./src/images/Celular.png"> 
+    <img width="100%" src="./src/images/celular.png"> 
 </p>
 
 ***Tablet:***
@@ -145,8 +145,9 @@ Para diseñar el prototipo usamos [_`figma`_](#figma)
 
 ##### Paleta de colores
 
-![Paleta de colores](./src/images/colores.png)
-
+<p align="center" width="100%">
+    <img width="100%" src="./src/images/colores.png"> 
+</p>
 ##### Fuente
 ![Fuente](./src/images/Fuente.png)
 
@@ -157,21 +158,13 @@ Realizamos un test de usabilidad para evaluar la facilidad de uso de la platafor
 
 ![Paleta de colores](./src/images/Pregunta-1.png)
 
-<p align="center" width="100%">
-    <img width="33%" src="./src/images/Pregunta-1.png"> 
-</p>
-<p align="center" width="100%">
-    <img width="33%" src="./src/images/Pregunta-2.png"> 
-</p>
-<p align="center" width="100%">
-    <img width="33%" src="./src/images/Pregunta-3.png"> 
-</p>
-<p align="center" width="100%">
-    <img width="33%" src="./src/images/Pregunta-4.png"> 
-</p>
-<p align="center" width="100%">
-    <img width="33%" src="./src/images/Pregunta-5.png"> 
-</p>
+![Paleta de colores](./src/images/Pregunta-2.png)
+
+![Paleta de colores](./src/images/Pregunta-3.png)
+
+![Paleta de colores](./src/images/Pregunta-4.png)
+
+![Paleta de colores](./src/images/Pregunta-5.png)
 
 Estos fueron los principales hallazgos descubiertos por el estudio de usabilidad:
 
