@@ -2,14 +2,9 @@ import { onNavigate } from '../router.js';
 import { addUser, loginGoogle, loginFacebook } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
 
-export function saveUser(name) {
-  console.log('fn saveuser', name);
-  return name;
-}
-
 export const signUp = () => {
-  const div = document.createElement('div');
-  const section = document.createElement('div');
+  const main = document.createElement('main');
+  const section = document.createElement('article');
   section.innerHTML = `
     <article class="wrapper">
       <picture class="img-container">
@@ -35,18 +30,15 @@ export const signUp = () => {
         </p> 
     </article>
     `;
-  /* FIREBASE FORM */
+
   const signupForm = section.querySelector('#signup-form');
   signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const username = signupForm['singup-name'].value;
-    const lastname = signupForm['singup-lastname'].value;
     const email = signupForm['singup-email'].value;
     const password = signupForm['singup-password'].value;
 
     localStorage.setItem('username', username);
-    console.log(username, lastname, email, password);
 
     try {
       addUser(email, password);
@@ -65,17 +57,10 @@ export const signUp = () => {
     }
   });
 
-  /* Google log-in */
   const googleBtn = section.querySelector('#googleLogin');
   googleBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-
     try {
-      // setDoc(ref(database, `users/${addUser.user.uid}`), {
-      //   name: username,
-      //   lastname,
-      //   email,
-      // });
       await loginGoogle();
       onNavigate('/home');
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
@@ -92,11 +77,9 @@ export const signUp = () => {
     }
   });
 
-  /* Facebook log-in */
   const facebookbtn = section.querySelector('#fb-login');
   facebookbtn.addEventListener('click', async (e) => {
     e.preventDefault();
-
     try {
       await loginFacebook();
       onNavigate('/home');
@@ -108,8 +91,7 @@ export const signUp = () => {
     }
   });
 
-  /* INSERTA append */
-  div.append(section);
+  main.append(section);
 
-  return div;
+  return main;
 };

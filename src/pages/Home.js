@@ -4,15 +4,20 @@ import {
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/auth.js';
 import {
-  deleteTask, db, addLike, unLike, incrementLike, decrement,
+  deleteDocPost,
+  db,
+  addLike,
+  unLike,
+  incrementLike,
+  decrementLike,
 } from '../firebase/firestore.js';
 import { onNavigate } from '../router.js';
-import { setupPosts } from '../components/postCard.js';
+import { setupPosts } from '../components/setupPost.js';
 import { nav } from '../components/nav.js';
 
 export const home = () => {
-  const div = document.createElement('div');
-  const section = document.createElement('div');
+  const main = document.createElement('main');
+  const section = document.createElement('article');
   section.innerHTML = `
   <header class='header-home'>
     <nav id="nav">  
@@ -34,20 +39,20 @@ export const home = () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
 
-  function Eliminar(postsContainer) {
+  function deletePost(postsContainer) {
     const btnDelete = postsContainer.querySelectorAll('.btn-delete');
     btnDelete.forEach((btn) => {
       btn.addEventListener('click', ({ target: { dataset } }) => {
-        deleteTask(dataset.id);
+        deleteDocPost(dataset.id);
       });
     });
   }
 
-  function like(postsContainer, querySnapshot, user) {
+  function like(postsContainer, posts, user) {
     const likes = postsContainer.querySelectorAll('.icon-like');
     likes.forEach((liked) => {
       const uId = user.uid;
-      const post = querySnapshot.find((doc) => doc.id === liked.dataset.id);
+      const post = posts.find((doc) => doc.id === liked.dataset.id);
       const likedByUser = post.likeUserId.includes(uId);
       if (likedByUser) {
         liked.src = './images/liked.svg';
@@ -56,7 +61,7 @@ export const home = () => {
         const idPost = dataset.id;
         if (likedByUser) {
           liked.src = './images/like-icon.svg';
-          decrement(idPost);
+          decrementLike(idPost);
           unLike(idPost, uId);
         } else {
           liked.src = './images/liked.svg';
@@ -68,16 +73,15 @@ export const home = () => {
   }
 
   onAuthStateChanged(auth, async (user) => {
-    console.log('USeR : ', user);
     if (user) {
-      const queryPost = query(collection(db, 'post'), orderBy('date', 'asc')); //   traeme todos los datos que tienes hasta el momento
+      const queryPost = query(collection(db, 'post'), orderBy('date', 'desc')); //   traeme todos los datos que tienes hasta el momento
       onSnapshot(queryPost, (querySnapshot) => {
         // MOSTRAR
         const htmlPosts = setupPosts(querySnapshot, user);
         const postsContainer = section.querySelector('.posts');
         postsContainer.innerHTML = htmlPosts;
         // ELIMINAR
-        Eliminar(postsContainer);
+        deletePost(postsContainer);
         // LIKES
         const posts = [];
         querySnapshot.forEach((doc) => {
@@ -88,8 +92,6 @@ export const home = () => {
         const navSelector = section.querySelector('#nav');
         navSelector.appendChild(nav());
       });
-    } else {
-      console.log('USUER : ', user);
     }
   });
 
@@ -98,7 +100,7 @@ export const home = () => {
     onNavigate('/createpost');
   });
 
-  div.append(section);
+  main.append(section);
 
-  return div;
+  return main;
 };

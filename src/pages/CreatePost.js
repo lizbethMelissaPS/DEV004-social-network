@@ -1,4 +1,4 @@
-import { subirArchivo } from '../firebase/storage.js';
+import { uploadFile } from '../firebase/storage.js';
 import { saveTask } from '../firebase/firestore.js';
 import { currentUser } from '../firebase/auth.js';
 import { nav } from '../components/nav.js';
@@ -54,30 +54,40 @@ export const createPost = () => {
 
   fileInput.addEventListener('change', (evento) => {
     evento.preventDefault();
-    const archivo = evento.target.files[0];
-    subirArchivo(archivo);
+    const file = evento.target.files[0];
+    uploadFile(file);
   });
 
   const createForm = section.querySelector('#create-form');
-
   createForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const user = currentUser();
 
+    const user = currentUser();
     const userValue = localStorage.getItem('username');
     let userName = user.displayName;
-    userName = (!userName) ? userValue : userName;
+    userName = !userName ? userValue : userName;
 
     const defaultPic = './images/profile-pic.png';
     let profilePic = user.photoURL;
-    profilePic = (!profilePic) ? defaultPic : profilePic;
+    profilePic = !profilePic ? defaultPic : profilePic;
 
     const like = [];
     const likeUserId = [];
     const dt = new Date().toLocaleDateString();
     const postLocation = createForm['post-location'];
     const postDescription = createForm['post-description'];
-    saveTask(userName, user.email, user.uid, profilePic, localStorage.getItem('url'), postDescription.value, postLocation.value, dt, like, likeUserId);
+    saveTask(
+      userName,
+      user.email,
+      user.uid,
+      profilePic,
+      localStorage.getItem('url'),
+      postDescription.value,
+      postLocation.value,
+      dt,
+      like,
+      likeUserId,
+    );
     createForm.reset();
     onNavigate('/home');
   });

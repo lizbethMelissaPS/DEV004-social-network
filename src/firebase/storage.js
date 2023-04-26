@@ -1,37 +1,38 @@
 import {
-  getStorage, ref, uploadBytesResumable, getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
 } from 'firebase/storage';
 
 // Crear una referencia raíz
 const storage = getStorage();
 // a esta función la invocamos para mostrar el mensaje final después del upload
 function imgPreview(url) {
-  const elMensaje = document.getElementById('file-box');
-  const textoMensaje = `<img src="${url}" class="preview"> `;
-  elMensaje.innerHTML = textoMensaje;
+  const fileBox = document.getElementById('file-box');
+  const img = `<img src="${url}" class="preview"> `;
+  fileBox.innerHTML = img;
 }
 
-export function subirArchivo(archivo) {
-  console.log('entramos!!', archivo);
-  const refStorage = ref(storage, `images/${archivo.name}`);
+export function uploadFile(file) {
+  const refStorage = ref(storage, `images/${file.name}`);
   /** @type {any} */
   const metadata = {
     contentType: 'image/jpeg',
   };
-  const uploadTask = uploadBytesResumable(refStorage, archivo, metadata);
-  console.log(uploadTask);
+  const uploadTask = uploadBytesResumable(refStorage, file, metadata);
   uploadTask.on(
     'state_changed',
     (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log(`Upload is ${progress}% done`);
+      // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      // console.log(`Upload is ${progress}% done`);
       // eslint-disable-next-line default-case
       switch (snapshot.state) {
         case 'paused':
-          console.log('Upload is paused');
+          // console.log('Upload is paused');
           break;
         case 'running':
-          console.log('Upload is running');
+          // console.log('Upload is running');
           break;
       }
     },
@@ -39,16 +40,16 @@ export function subirArchivo(archivo) {
       // eslint-disable-next-line default-case
       switch (error.code) {
         case 'storage/unauthorized':
-        // User doesn't have permission to access the object
+          // User doesn't have permission to access the object
           break;
         case 'storage/canceled':
-        // User canceled the upload
+          // User canceled the upload
           break;
 
           // ...
 
         case 'storage/unknown':
-        // Unknown error occurred, inspect error.serverResponse
+          // Unknown error occurred, inspect error.serverResponse
           break;
       }
     },

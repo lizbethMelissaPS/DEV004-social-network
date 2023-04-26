@@ -1,11 +1,8 @@
-import { onNavigate } from '../router.js';
 import { nav } from '../components/nav.js';
-// import { auth } from '../firebase/config.js';
 
 export const profile = () => {
-  /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
-  const div = document.createElement('div');
-  const section = document.createElement('div');
+  const main = document.createElement('main');
+  const section = document.createElement('article');
   section.innerHTML = `
         <div class="wrapper">
           <div id="nav" class="img-container">
@@ -21,7 +18,6 @@ export const profile = () => {
           </div>
        </div>
       `;
-  /* FIREBASE */
 
   const logoCreate = section.querySelector('#nav');
   logoCreate.appendChild(nav());
@@ -29,11 +25,7 @@ export const profile = () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
 
-  /* AGREGAR TEXTO A LOS BOTONES textContent */
+  main.append(section);
 
-
-  /* INSERTA append */
-  div.append(section);
-
-  return div;
+  return main;
 };

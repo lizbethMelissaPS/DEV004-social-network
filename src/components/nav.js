@@ -14,7 +14,6 @@ const lougOutBtn = () => {
 };
 
 export const nav = () => {
-//   const html = '';
   const article = document.createElement('article');
   article.className = 'nav';
   const section = document.createElement('section');

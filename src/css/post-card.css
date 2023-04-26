@@ -15,7 +15,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* gap: 120px; */
 }
 
 .info{
@@ -24,7 +23,6 @@
     gap: 13px;
     order: 0;
     flex-grow: 0;
-    /* width: 236.74px; */
     width: 357.74px;
     height: 43.74px;
 }
@@ -37,7 +35,6 @@
 .profile-postbox img{ 
     display: block;
     width: 100%;
-    /* height: -webkit-fill-available;  */
 }
 .auto-layout{
     display: flex;

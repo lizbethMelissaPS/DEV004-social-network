@@ -21,8 +21,8 @@ export async function loginWithValues(email, password) {
 
 export const Login = () => {
   /* UN CONTENEDOR Q CONTENGA A LOS BOTONES */
-  const div = document.createElement('div');
-  const section = document.createElement('div');
+  const main = document.createElement('main');
+  const section = document.createElement('article');
   section.innerHTML = `
     <article class="wrapper">
       <picture class="img-container">
@@ -57,7 +57,6 @@ export const Login = () => {
     e.preventDefault();
     const email = loginForm['login-email'].value;
     const password = loginForm['login-password'].value;
-    console.log(email, password);
     loginWithValues(email, password);
   });
 
@@ -67,7 +66,6 @@ export const Login = () => {
     e.preventDefault();
     try {
       await loginGoogle();
-      console.log(loginGoogle);
       onNavigate('/home');
       showMessage(`Welcome ${loginGoogle.user.displayName}`, 'success');
     } catch (error) {
@@ -94,7 +92,7 @@ export const Login = () => {
   });
 
   /* INSERTA append */
-  div.append(section);
+  main.append(section);
 
-  return div;
+  return main;
 };
