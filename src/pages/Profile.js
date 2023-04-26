@@ -20,7 +20,7 @@ export const profile = () => {
       `;
 
   const logoCreate = section.querySelector('#nav');
-  logoCreate.appendChild(nav());
+  logoCreate.append(nav());
   logoCreate.addEventListener('click', () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });

@@ -5,11 +5,8 @@ import {
   arrayUnion,
   addDoc,
   collection,
-  getDocs,
-  onSnapshot,
   deleteDoc,
   doc,
-  getDoc,
   updateDoc,
   increment,
 } from 'firebase/firestore';

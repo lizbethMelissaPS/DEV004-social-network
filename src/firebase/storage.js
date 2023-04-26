@@ -5,8 +5,9 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 
+import { app } from './config';
 // Crear una referencia raíz
-const storage = getStorage();
+const storage = getStorage(app);
 // a esta función la invocamos para mostrar el mensaje final después del upload
 function imgPreview(url) {
   const fileBox = document.getElementById('file-box');
