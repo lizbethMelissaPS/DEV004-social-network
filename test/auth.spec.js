@@ -7,12 +7,40 @@ import { signUp } from '../src/pages/Signup.js';
 import { Login } from '../src/pages/Login.js';
 import { login } from '../src/firebase/auth.js';
 import { Welcome } from '../src/pages/Welcome.js';
+import { home } from '../src/pages/Home.js';
 
 jest.mock('../src/router.js');
 jest.mock('../src/firebase/auth.js');
 // jest.mock('../src/firebase/auth.js', () => ({
 //   login: jest.fn(),
 // }));
+describe('Los test del home', () => {
+  it('debería ser una función', () => {
+    expect(typeof home).toBe('function');
+  });
+
+  it('deberia mostrar el home correctamente', () => {
+    const root = document.createElement('div');
+    root.id = 'root';
+
+    root.append(home());
+    const signupForm = root.querySelector('#signup-form');
+    const username = root.querySelector('#singup-name');
+    const lastname = root.querySelector('#singup-lastname');
+    const email = root.querySelector('#singup-email');
+    const password = root.querySelector('#singup-password');
+    const submit = root.querySelector('.submit');
+
+    expect(signupForm).not.toBe(null);
+    expect(username).not.toBe(null);
+    expect(lastname).not.toBe(null);
+    expect(email).not.toBe(null);
+    expect(password).not.toBe(null);
+    expect(submit).not.toBe(null);
+
+    document.body.append(root);
+  });
+});
 
 describe('Los test del signup', () => {
   it('debería ser una función', () => {
