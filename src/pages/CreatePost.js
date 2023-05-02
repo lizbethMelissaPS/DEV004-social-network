@@ -41,7 +41,7 @@ export const createPost = () => {
       `;
 
   const logoNav = section.querySelector('#nav');
-  logoNav.appendChild(nav());
+  logoNav.append(nav());
   logoNav.addEventListener('click', () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });

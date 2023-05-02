@@ -1,12 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Los test del login Snapshot del LOGIN 1`] = `undefined`;
-
-exports[`welcome Snapshot del WELCOME 1`] = `
-<div>
-  <img
-    class="welcome"
-    src="../images/sonder.png"
-  />
-</div>
-`;
