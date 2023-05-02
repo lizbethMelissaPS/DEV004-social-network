@@ -1,6 +1,9 @@
 import { onNavigate } from '../router.js';
 import { addUser, loginGoogle, loginFacebook } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
+import sonderIcon from '../images/Sonder-icon.png';
+import facebook from '../images/facebook.png';
+import google from '../images/google.png';
 
 export const signUp = () => {
   const main = document.createElement('main');
@@ -8,7 +11,7 @@ export const signUp = () => {
   section.innerHTML = `
     <article class="wrapper">
       <picture class="img-container">
-        <img src="./images/Sonder-icon.png" alt="">
+        <img src=${sonderIcon} alt="">
       </picture>
       <h1 class="h1-form">Sign Up</h1>
       <p class="text-sign">Find and share inspiration all around the world!</p>
@@ -22,9 +25,9 @@ export const signUp = () => {
       </form>  
       <p class="or">or</p>
         <button id="fb-login" type="button" class="submit facebook">
-        <img src="./images/facebook.png" alt="facebook icon">Continue with Facebook</button>
+        <img src=${facebook} alt="facebook icon">Continue with Facebook</button>
         <button id="googleLogin" type="button" class="submit google">
-        <img src="./images/google.png" alt="google icon">Continue with Google</button>
+        <img src=${google} alt="google icon">Continue with Google</button>
         <p class="p-log">
           Already have an account yet? <a class="link" href="/login">Log in</a>
         </p> 

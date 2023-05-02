@@ -14,6 +14,10 @@ import {
 import { onNavigate } from '../router.js';
 import { setupPosts } from '../components/setupPost.js';
 import { nav } from '../components/nav.js';
+import sonderIcon from '../images/Sonder-icon.png';
+import createIcon from '../images/create.png';
+import likedIcon from '../images/liked.svg';
+import likeIcon from '../images/like-icon.svg';
 
 export const home = () => {
   const main = document.createElement('main');
@@ -22,12 +26,12 @@ export const home = () => {
   <header class='header-home'>
     <nav id="nav">  
       <picture id="logo-home" class="logo-container">
-        <img src="./images/Sonder-icon.png" alt="Sonder icon">
+        <img src=${sonderIcon} alt="Sonder icon">
       </picture> 
     </nav>
     <input type="search" class="search" placeholder="search">
           <button id='createPost' class="create-home">
-            <img src="./images/create.png" class="create-home">
+            <img src=${createIcon} class="create-home">
           </button>  
   </header>
   <aside class='aside'>
@@ -55,16 +59,16 @@ export const home = () => {
       const post = posts.find((doc) => doc.id === liked.dataset.id);
       const likedByUser = post.likeUserId.includes(uId);
       if (likedByUser) {
-        liked.src = './images/liked.svg';
+        liked.src = `${likedIcon}`;
       }
       liked.addEventListener('click', ({ target: { dataset } }) => {
         const idPost = dataset.id;
         if (likedByUser) {
-          liked.src = './images/like-icon.svg';
+          liked.src = `${likeIcon}`;
           decrementLike(idPost);
           unLike(idPost, uId);
         } else {
-          liked.src = './images/liked.svg';
+          liked.src = `${likedIcon}`;
           incrementLike(idPost);
           addLike(idPost, uId);
         }

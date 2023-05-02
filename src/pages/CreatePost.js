@@ -3,6 +3,10 @@ import { saveTask } from '../firebase/firestore.js';
 import { currentUser } from '../firebase/auth.js';
 import { nav } from '../components/nav.js';
 import { onNavigate } from '../router.js';
+import sonderIcon from '../images/Sonder-icon.png';
+import photoIcon from '../images/photo-icon.png';
+import check from '../images/check.png';
+import pic from '../images/profile-pic.png';
 
 export const createPost = () => {
   const main = document.createElement('main');
@@ -12,7 +16,7 @@ export const createPost = () => {
   <header class='header-home'>
     <nav id="nav">
       <picture id="logo-home" class="logo-container">
-        <img src="./images/Sonder-icon.png" alt="Sonder icon">
+        <img src=${sonderIcon} alt="Sonder icon">
       </picture>
     </nav>
       <h1 class="text-create">Create a post</h1>
@@ -21,7 +25,7 @@ export const createPost = () => {
           <form id="create-form">
             <section id="file-box" class="file-box">
               <input type="file" id="post-img" class="post-img" hidden>
-              <img src="./images/photo-icon.png" alt="photo icon" class="photo-icon">
+              <img src=${photoIcon} alt="photo icon" class="photo-icon">
             </section>
 
             <p class="p-create">Add a description</p>
@@ -34,7 +38,7 @@ export const createPost = () => {
             <input id="post-location" type="text" autocomplete="off" placeholder="Where are you right now?">
 
             <button id="btn-task-save" class="check">
-            <img src="./images/check.png" alt="button check" class="check">
+            <img src=${check} alt="button check" class="check">
             </button>
           </form>
         </article>
@@ -67,7 +71,7 @@ export const createPost = () => {
     let userName = user.displayName;
     userName = !userName ? userValue : userName;
 
-    const defaultPic = './images/profile-pic.png';
+    const defaultPic = pic;
     let profilePic = user.photoURL;
     profilePic = !profilePic ? defaultPic : profilePic;
 

@@ -1,3 +1,8 @@
+import share from '../images/share.png';
+import like from '../images/like-icon.svg';
+import comment from '../images/comment.png';
+import bucket from '../images/bucket.png';
+
 export const setupPosts = (data, user) => {
   let html = '';
   data.forEach((doc) => {
@@ -30,18 +35,18 @@ export const setupPosts = (data, user) => {
           </section>
           <section class="interaction-box">
             <figure class=" item">
-              <img data-id="${doc.id}" src="./images/like-icon.svg" alt="" class="icon-like">
+              <img data-id="${doc.id}" src=${like} alt="" class="icon-like">
               <p class="count">${post.like}</p>
             </figure>
             <figure class="item">
-              <img src="./images/comment.png" alt="" class="icon-post">
+              <img src=${comment} alt="" class="icon-post">
               <p class="count">13</p>
             </figure>
             <figure class="item">
-              <img src="./images/bucket.png" alt="" class="icon-post">
+              <img src=${bucket} alt="" class="icon-post">
             </figure>
             <figure class="item">
-              <img src="./images/share.png" alt="" class="icon-post">
+              <img src=${share} alt="" class="icon-post">
             </figure>
           </section>
         </article>

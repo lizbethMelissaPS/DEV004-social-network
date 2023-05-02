@@ -1,4 +1,5 @@
 import { nav } from '../components/nav.js';
+import sonderIcon from '../images/Sonder-icon.png';
 
 export const profile = () => {
   const main = document.createElement('main');
@@ -6,7 +7,7 @@ export const profile = () => {
   section.innerHTML = `
         <div class="wrapper">
           <div id="nav" class="img-container">
-            <img src="./images/Sonder-icon.png" alt="">
+            <img src=${sonderIcon} alt="">
           </div>
           <div id="message">
             <h2>404</h2>

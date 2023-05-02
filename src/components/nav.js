@@ -1,5 +1,9 @@
 import { logOut } from '../firebase/auth.js';
 import { onNavigate } from '../router.js';
+import logoutIcon from '../images/log-out.png';
+import profileIcon from '../images/profile.png';
+import homeIcon from '../images/home.png';
+import settingsIcon from '../images/settings.png';
 
 const lougOutBtn = () => {
   const btn = document.createElement('button');
@@ -9,7 +13,7 @@ const lougOutBtn = () => {
     await logOut();
     onNavigate('/login');
   });
-  btn.innerHTML = '<img src="./images/log-out.png" alt="" class="icon-post">';
+  btn.innerHTML = `<img src=${logoutIcon} alt="" class="icon-post">`;
   return btn;
 };
 
@@ -20,13 +24,13 @@ export const nav = () => {
   section.className = 'nav-container';
   section.innerHTML = ` 
     <a class="icono-nav" href="/profile">
-        <img src="./images/profile.png" alt="" class="icon-post">
+        <img src=${profileIcon} alt="" class="icon-post">
     </a>
     <a class="icono-nav" href="/home">
-        <img src="./images/home.png" alt="" class="icon-post">
+        <img src=${homeIcon} alt="" class="icon-post">
     </a>
             <figure class="icono-nav">
-                <img src="./images/settings.png" alt="" class="icon-post">
+                <img src=${settingsIcon} alt="" class="icon-post">
             </figure>`;
   section.appendChild(lougOutBtn());
   return section;

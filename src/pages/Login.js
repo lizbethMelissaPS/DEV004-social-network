@@ -1,6 +1,9 @@
 import { loginGoogle, loginFacebook, login } from '../firebase/auth.js';
 import { showMessage } from '../components/showMessage.js';
 import { onNavigate } from '../router';
+import sonderIcon from '../images/Sonder-icon.png';
+import facebook from '../images/facebook.png';
+import google from '../images/google.png';
 /* Para que este disponoble en otro lado export */
 
 export async function loginWithValues(email, password) {
@@ -26,7 +29,7 @@ export const Login = () => {
   section.innerHTML = `
     <article class="wrapper">
       <picture class="img-container">
-        <img src="./images/Sonder-icon.png" alt="">
+        <img id="sondericon" src=${sonderIcon} alt="">
       </picture>
       <h1 class="h1-form">Log In</h1>
       <p class="text" >Welcome back you've been missed!</p>
@@ -40,10 +43,10 @@ export const Login = () => {
       </form> 
       <p class="or">or</p>
         <button id="fb-login" type="button" class="submit facebook">
-          <img src="./images/facebook.png" alt="facebook icon"> Continue with Facebook
+          <img src=${facebook} alt="facebook icon"> Continue with Facebook
         </button>
         <button id="googleLogin" type="button" class="submit google">
-          <img src="./images/google.png" alt="google icon">Continue with Google
+          <img src=${google} alt="google icon">Continue with Google
         </button>
         <p class="p-log">
           Dont have an account yet? <a class="link" href="/signup">Sign Up</a>
