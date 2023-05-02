@@ -7,9 +7,9 @@ import { signUp } from '../src/pages/Signup.js';
 import { Login } from '../src/pages/Login.js';
 import { login } from '../src/firebase/auth.js';
 import { Welcome } from '../src/pages/Welcome.js';
-// import { home } from '../src/pages/Home.js';
-import { profile } from '../src/pages/Profile.js';
+import { home } from '../src/pages/Home.js';
 import { createPost } from '../src/pages/CreatePost.js';
+import { profile } from '../src/pages/Profile.js';
 import { onNavigate } from '../src/router.js';
 
 jest.mock('../src/router.js');
@@ -19,7 +19,6 @@ jest.mock('../src/components/nav.js');
 // jest.mock('../src/firebase/auth.js', () => ({
 //   login: jest.fn(),
 // }));
-
 describe('Los test del profile', () => {
   it('debería ser una función', () => {
     expect(typeof profile).toBe('function');
@@ -28,13 +27,41 @@ describe('Los test del profile', () => {
   it('deberia mostrar pagina de perfil correctamente', () => {
     const root = document.createElement('div');
     root.id = 'root';
-
     root.append(profile());
     const icon = root.querySelector('#nav');
     const message = root.querySelector('#message');
 
     expect(icon).not.toBe(null);
     expect(message).not.toBe(null);
+    document.body.append(root);
+  });
+});
+
+describe('Los test del home', () => {
+  it('debería ser una función', () => {
+    expect(typeof home).toBe('function');
+  });
+
+  it('deberia mostrar pagina de home correctamente', () => {
+    const root = document.createElement('div');
+    root.id = 'root';
+
+    root.append(home());
+    const postsContainer = root.querySelector('.posts');
+
+    expect(postsContainer).not.toBe(null);
+
+    document.body.append(root);
+  });
+
+  it('deberia mostrar el navegador correctamente', () => {
+    const root = document.createElement('div');
+    root.id = 'root';
+
+    root.append(home());
+    const navSelector = root.querySelector('#nav');
+
+    expect(navSelector).not.toBe(null);
 
     document.body.append(root);
   });
@@ -65,34 +92,6 @@ describe('Los test del create-post', () => {
     document.body.append(root);
   });
 });
-
-// describe('Los test del home', () => {
-//   it('debería ser una función', () => {
-//     expect(typeof home).toBe('function');
-//   });
-
-//   it('deberia mostrar el home correctamente', () => {
-//     const root = document.createElement('div');
-//     root.id = 'root';
-
-//     root.append(home());
-//     const signupForm = root.querySelector('#signup-form');
-//     const username = root.querySelector('#singup-name');
-//     const lastname = root.querySelector('#singup-lastname');
-//     const email = root.querySelector('#singup-email');
-//     const password = root.querySelector('#singup-password');
-//     const submit = root.querySelector('.submit');
-
-//     expect(signupForm).not.toBe(null);
-//     expect(username).not.toBe(null);
-//     expect(lastname).not.toBe(null);
-//     expect(email).not.toBe(null);
-//     expect(password).not.toBe(null);
-//     expect(submit).not.toBe(null);
-
-//     document.body.append(root);
-//   });
-// });
 
 describe('Los test del signup', () => {
   it('debería ser una función', () => {
