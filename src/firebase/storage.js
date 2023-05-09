@@ -8,7 +8,7 @@ import {
 import { app } from './config';
 // Crear una referencia raíz
 const storage = getStorage(app);
-// a esta función la invocamos para mostrar el mensaje final después del upload
+// a esta función la invocamos para mostrar la imagen previa
 function imgPreview(url) {
   const fileBox = document.getElementById('file-box');
   const img = `<img src="${url}" class="preview"> `;

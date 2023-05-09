@@ -19,6 +19,39 @@ import createIcon from '../images/create.png';
 import likedIcon from '../images/liked.svg';
 import likeIcon from '../images/like-icon.svg';
 
+function deletePost(postsContainer) {
+  const btnDelete = postsContainer.querySelectorAll('.btn-delete');
+  btnDelete.forEach((btn) => {
+    btn.addEventListener('click', ({ target: { dataset } }) => {
+      deleteDocPost(dataset.id);
+    });
+  });
+}
+
+function like(postsContainer, posts, user) {
+  const likes = postsContainer.querySelectorAll('.icon-like');
+  likes.forEach((liked) => {
+    const uId = user.uid;
+    const post = posts.find((doc) => doc.id === liked.dataset.id);
+    const likedByUser = post.likeUserId.includes(uId);
+    if (likedByUser) {
+      liked.src = `${likedIcon}`;
+    }
+    liked.addEventListener('click', ({ target: { dataset } }) => {
+      const idPost = dataset.id;
+      if (likedByUser) {
+        liked.src = `${likeIcon}`;
+        decrementLike(idPost);
+        unLike(idPost, uId);
+      } else {
+        liked.src = `${likedIcon}`;
+        incrementLike(idPost);
+        addLike(idPost, uId);
+      }
+    });
+  });
+}
+
 export const home = () => {
   const main = document.createElement('main');
   const section = document.createElement('article');
@@ -42,39 +75,6 @@ export const home = () => {
   logoHome.addEventListener('click', () => {
     document.querySelector('.nav-container').classList.toggle('show');
   });
-
-  function deletePost(postsContainer) {
-    const btnDelete = postsContainer.querySelectorAll('.btn-delete');
-    btnDelete.forEach((btn) => {
-      btn.addEventListener('click', ({ target: { dataset } }) => {
-        deleteDocPost(dataset.id);
-      });
-    });
-  }
-
-  function like(postsContainer, posts, user) {
-    const likes = postsContainer.querySelectorAll('.icon-like');
-    likes.forEach((liked) => {
-      const uId = user.uid;
-      const post = posts.find((doc) => doc.id === liked.dataset.id);
-      const likedByUser = post.likeUserId.includes(uId);
-      if (likedByUser) {
-        liked.src = `${likedIcon}`;
-      }
-      liked.addEventListener('click', ({ target: { dataset } }) => {
-        const idPost = dataset.id;
-        if (likedByUser) {
-          liked.src = `${likeIcon}`;
-          decrementLike(idPost);
-          unLike(idPost, uId);
-        } else {
-          liked.src = `${likedIcon}`;
-          incrementLike(idPost);
-          addLike(idPost, uId);
-        }
-      });
-    });
-  }
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
